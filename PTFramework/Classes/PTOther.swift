@@ -6,4 +6,8 @@
 //
 
 import Foundation
-//This is a test
+public class Test {
+    public static func ptPrint() {
+        print("Working")
+    }
+}
