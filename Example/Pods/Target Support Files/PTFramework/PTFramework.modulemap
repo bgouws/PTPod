@@ -1,0 +1,6 @@
+framework module PTFramework {
+  umbrella header "PTFramework-umbrella.h"
+
+  export *
+  module * { export * }
+}

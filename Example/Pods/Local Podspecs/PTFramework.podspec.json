@@ -1,0 +1,22 @@
+{
+  "name": "PTFramework",
+  "version": "0.1.0",
+  "summary": "A short description of PTFramework.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/bgouws@jhb.dvt.co.za/PTFramework",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "bgouws@jhb.dvt.co.za": "bgouws@jhb.dvt.co.za"
+  },
+  "source": {
+    "git": "https://github.com/bgouws@jhb.dvt.co.za/PTFramework.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "PTFramework/Classes/**/*"
+}

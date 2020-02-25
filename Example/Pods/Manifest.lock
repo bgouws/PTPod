@@ -1,0 +1,16 @@
+PODS:
+  - PTFramework (0.1.0)
+
+DEPENDENCIES:
+  - PTFramework (from `../`)
+
+EXTERNAL SOURCES:
+  PTFramework:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PTFramework: b79edd54904c0144e69460645ea994321a185875
+
+PODFILE CHECKSUM: ace3550aac78a238ebbf5889208f7ad40486d53c
+
+COCOAPODS: 1.8.4
