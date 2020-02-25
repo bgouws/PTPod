@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PTFramework'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of PTFramework.'
+  s.version          = '1.0.0'
+  s.summary          = 'PTFramework is a framework which adds functionality to the Play Time Productivity Application'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,17 +18,19 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+'PTFramework is a framework which adds functionality to the Play Time Productivity Application - It is built using the MVVM architecture'
                        DESC
 
-  s.homepage         = 'https://github.com/bgouws@jhb.dvt.co.za/PTFramework'
+  #s.homepage         = 'https://github.com/bgouws@jhb.dvt.co.za/PTFramework'
+  s.homepage          = 'https://github.com/bgouws/PTPod'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'bgouws@jhb.dvt.co.za' => 'bgouws@jhb.dvt.co.za' }
-  s.source           = { :git => 'https://github.com/bgouws@jhb.dvt.co.za/PTFramework.git', :tag => s.version.to_s }
+  #s.source           = { :git => 'https://github.com/bgouws@jhb.dvt.co.za/PTFramework.git', :tag => s.version.to_s }
+  s.source           = :git => 'https://github.com/bgouws/PTPod.git', :tag => s.version.to_s
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '12.0'
 
   s.source_files = 'PTFramework/Classes/**/*'
   
