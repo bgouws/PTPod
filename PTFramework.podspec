@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '12.0'
 
   s.source_files = 'PTFramework/Classes/**/*'
+  s.source_files = 'PTPod/*/**'
   
   # s.resource_bundles = {
   #   'PTFramework' => ['PTFramework/Assets/*.png']
