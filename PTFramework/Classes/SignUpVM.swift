@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+public class PTCreateUser {
+    public static func ptCreateUser(email: String, password: String) {
+        
+    }
+}
