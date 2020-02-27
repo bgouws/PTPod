@@ -10,13 +10,17 @@ import FirebaseAuth
 import FirebaseDatabase
 
 public class PTSignIn {
-    public static func ptSignUserIn(email: String, password: String) {
+    public static func ptSignUserIn(email: String, password: String) -> Bool {
+        var success = true
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("Failed to sign user in with error: ", error.localizedDescription)
-                return
+                success = false
+            } else {
+                success = true
+                print("Successfully Logged user in. - With PTFramework")
             }
-            print("Successfully Logged user in. - With PTFramework")
         }
+        return success
     }
 }

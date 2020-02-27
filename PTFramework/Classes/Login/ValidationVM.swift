@@ -13,8 +13,10 @@ public class PTValidation {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         
         if (emailPred.evaluate(with: email) && password != "") {
+            print("Passed Validation")
             return true
         }
+        print("Failed Validation")
         return false
     }
     public static func ptValidationCheckSignUp(email: String, password: String, conPassword: String) -> Bool {
