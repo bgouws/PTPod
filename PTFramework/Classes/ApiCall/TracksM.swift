@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct PTTracks: Decodable {
+public struct PTTracks: Decodable {
     var results: [PTTrackDetails]
 }
 
-struct PTTrackDetails: Decodable {
+public struct PTTrackDetails: Decodable {
     var artistName: String
     var trackName: String
     var artworkUrl100: String

@@ -44,5 +44,60 @@ public class PTApiCall {
             dataTask.resume()
         }
     }
+    public static func ptPreparePlayList() {
+        var list = [PTTrackDetails]()
+        var albumArt = [UIImage]()
+        let myRequest = PTApiCall.PTTrackRequest.init(trackTitle: "Shake it off", trackArtist: "Taylor swift")
+        myRequest.ptGetData { result in
+            switch result {
+            case .failure(let error): print(error)
+            case .success(let actualData): list = actualData
+            }
+            for i in 1...30 {
+                //print("\(i): \(list[i].artistName) - \(list[i].trackName)")
+                let url = list[i].artworkUrl100
+                let finalURL = URL(string: url)
+                if let data = try? Data(contentsOf: finalURL!) {
+                    if let image = UIImage(data: data){
+                        DispatchQueue.main.async {
+                            albumArt.append(image)
+                            //print(albumArt)
+                        }
+                    }
+                }
+            }
+            for i in 1...30 {
+                print("\(i): \(list[i].artistName) - \(list[i].trackName) \n")
+            }
+            //Creating textfile test
+            let fileName = "Tracks"
+            // swiftlint:disable all
+            let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+                                                              appropriateFor: nil, create: true)
+            // swiftlint:enable all
+            let fileURL = DocumentDirURL.appendingPathComponent(fileName).appendingPathExtension("txt")
+            print("File Path: \(fileURL.path)")
+            var writeString = ""
+            for i in 1...30 {
+                writeString += ("\(i): \(list[i].artistName) - \(list[i].trackName) \n")
+            }
+            do {
+                //Write to file
+                try writeString.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+            } catch let error as NSError {
+                print("Failed to write to URL ")
+                print(error)
+            }
+            var readString = ""
+            do {
+                readString = try String(contentsOf: fileURL)
+            } catch let error as NSError {
+                print("Failed to read file")
+                print(error)
+            }
+            print("Contents of the file: \(readString)")
+            //Test
+        }
+    }
 }
 
