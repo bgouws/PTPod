@@ -30,4 +30,7 @@ public class PTAccountManagement {
         }
         return success
     }
+    public static func ptSignOut() {
+        PTSignOut.ptSignOutUser()
+    }
 }

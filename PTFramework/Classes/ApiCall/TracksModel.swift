@@ -16,4 +16,5 @@ public struct PTTrackDetails: Decodable {
     var trackName: String
     var artworkUrl100: String
     var collectionName: String
+    var previewUrl: String
 }
