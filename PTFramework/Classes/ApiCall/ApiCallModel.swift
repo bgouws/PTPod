@@ -8,14 +8,20 @@
 import Foundation
 
 public class PTApiCall {
+    public static var artistArr = [String]()
+    public static var titleArr = [String]()
+    public static var artArr = [String]()
+    public static var albumArt = [UIImage]()
+    public static var previewURL = [String]()
+    
     public static func ptCallApi() {
         
     }
     
-    enum PTTracksError:Error {
+    public enum PTTracksError:Error {
         case noData
     }
-    struct PTTrackRequest {
+    public struct PTTrackRequest {
         let resourceURL: URL
         //let aPI_KEY = "//itunes.apple.com/search"
         init(trackTitle: String, trackArtist: String) {
@@ -26,7 +32,7 @@ public class PTApiCall {
             self.resourceURL = resourceURL
         }
         
-        func ptGetData(completion: @escaping(Result<[PTTrackDetails], PTTracksError>) -> Void)  {
+        public func ptGetData(completion: @escaping(Result<[PTTrackDetails], PTTracksError>) -> Void)  {
             let dataTask = URLSession.shared.dataTask(with: resourceURL) { data, _, _ in
                 guard let jsonData = data else {
                     completion(.failure(.noData))
@@ -46,14 +52,13 @@ public class PTApiCall {
     }
     public static func ptPreparePlayList() {
         var list = [PTTrackDetails]()
-        var albumArt = [UIImage]()
-        let myRequest = PTApiCall.PTTrackRequest.init(trackTitle: "Shake it off", trackArtist: "Taylor swift")
+        let myRequest = PTApiCall.PTTrackRequest.init(trackTitle: "Jazz", trackArtist: "Jazz")
         myRequest.ptGetData { result in
             switch result {
             case .failure(let error): print(error)
             case .success(let actualData): list = actualData
             }
-            for i in 1...30 {
+            for i in 0...10 {
                 //print("\(i): \(list[i].artistName) - \(list[i].trackName)")
                 let url = list[i].artworkUrl100
                 let finalURL = URL(string: url)
@@ -66,7 +71,7 @@ public class PTApiCall {
                     }
                 }
             }
-            for i in 1...30 {
+            for i in 0...10 {
                 print("\(i): \(list[i].artistName) - \(list[i].trackName) \n")
             }
             //Creating textfile test
@@ -78,8 +83,8 @@ public class PTApiCall {
             let fileURL = DocumentDirURL.appendingPathComponent(fileName).appendingPathExtension("txt")
             print("File Path: \(fileURL.path)")
             var writeString = ""
-            for i in 1...30 {
-                writeString += ("\(i): \(list[i].artistName) - \(list[i].trackName) \n")
+            for i in 0...10 {
+                writeString += ("\(i)*\(list[i].artistName)*\(list[i].trackName)*\(list[i].artworkUrl100)*\(list[i].previewUrl)$")
             }
             do {
                 //Write to file
@@ -95,8 +100,21 @@ public class PTApiCall {
                 print("Failed to read file")
                 print(error)
             }
-            print("Contents of the file: \(readString)")
+            print("Contents of the file: \n\(readString)")
             //Test
+            
+            
+            let everyTrackDetail = readString.components(separatedBy: "$")
+            for track in 0...10 {
+                let temp = everyTrackDetail[track]
+                let data = temp.components(separatedBy: "*")
+                artistArr.append(data[1])
+                titleArr.append(data[2])
+                artArr.append(data[3])
+                previewURL.append(data[4])
+            }
+            PTPlayMusic.setData(artist: artistArr, title: titleArr, artwork: albumArt, previewURL: previewURL)
+            print("Successfully populated arrays")
         }
     }
 }

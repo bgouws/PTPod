@@ -11,10 +11,8 @@ import FirebaseAuth
 
 public class PTTasteSelection {
     public static func ptSaveMusicTaste(taste: [String]) {
-        let ref = Database.database().reference()
-        let user = Auth.auth().currentUser?.uid
-        ref.child("users").child(user!).setValue(["Music Taste": taste])
-        print("Music taste successfully saved - PTFramework")
+        //Calling Model
+        PTTaste.ptStoreTaste(taste: taste)
     }
     public static func ptCheckList(value: String, taste: [String]) -> Bool {
         for genre in taste where genre == value {
