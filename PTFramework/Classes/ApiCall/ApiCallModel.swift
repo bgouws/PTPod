@@ -11,7 +11,6 @@ public class PTApiCall {
     public static var artistArr = [String]()
     public static var titleArr = [String]()
     public static var artArr = [String]()
-    public static var albumArt = [UIImage]()
     public static var previewURL = [String]()
     
     public static func ptCallApi() {
@@ -52,27 +51,11 @@ public class PTApiCall {
     }
     public static func ptPreparePlayList() {
         var list = [PTTrackDetails]()
-        let myRequest = PTApiCall.PTTrackRequest.init(trackTitle: "Jazz", trackArtist: "Jazz")
+        let myRequest = PTApiCall.PTTrackRequest.init(trackTitle: "Metal", trackArtist: "")
         myRequest.ptGetData { result in
             switch result {
             case .failure(let error): print(error)
             case .success(let actualData): list = actualData
-            }
-            for i in 0...10 {
-                //print("\(i): \(list[i].artistName) - \(list[i].trackName)")
-                let url = list[i].artworkUrl100
-                let finalURL = URL(string: url)
-                if let data = try? Data(contentsOf: finalURL!) {
-                    if let image = UIImage(data: data){
-                        DispatchQueue.main.async {
-                            albumArt.append(image)
-                            //print(albumArt)
-                        }
-                    }
-                }
-            }
-            for i in 0...10 {
-                print("\(i): \(list[i].artistName) - \(list[i].trackName) \n")
             }
             //Creating textfile test
             let fileName = "Tracks"
@@ -83,7 +66,7 @@ public class PTApiCall {
             let fileURL = DocumentDirURL.appendingPathComponent(fileName).appendingPathExtension("txt")
             print("File Path: \(fileURL.path)")
             var writeString = ""
-            for i in 0...10 {
+            for i in 0...18 {
                 writeString += ("\(i)*\(list[i].artistName)*\(list[i].trackName)*\(list[i].artworkUrl100)*\(list[i].previewUrl)$")
             }
             do {
@@ -101,11 +84,8 @@ public class PTApiCall {
                 print(error)
             }
             print("Contents of the file: \n\(readString)")
-            //Test
-            
-            
             let everyTrackDetail = readString.components(separatedBy: "$")
-            for track in 0...10 {
+            for track in 0...18 {
                 let temp = everyTrackDetail[track]
                 let data = temp.components(separatedBy: "*")
                 artistArr.append(data[1])
@@ -113,8 +93,10 @@ public class PTApiCall {
                 artArr.append(data[3])
                 previewURL.append(data[4])
             }
-            PTPlayMusic.setData(artist: artistArr, title: titleArr, artwork: albumArt, previewURL: previewURL)
+            PTPlayMusic.setData(artist: artistArr, title: titleArr,previewURL: previewURL,artString: artArr)
+            print("#############################")
             print("Successfully populated arrays")
+            print("#############################")
         }
     }
 }

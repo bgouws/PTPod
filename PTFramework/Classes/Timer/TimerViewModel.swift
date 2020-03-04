@@ -15,6 +15,7 @@ public class PTTimer {
     static var ptArt = UIImage()
     static var ptPreview = ""
     static var tCount = 0
+    static var pCount = 0
     static var nextTrack: AVPlayerItem?
     static var finalTitle = "Default"
     static var finalArtist = "Default"
@@ -27,11 +28,9 @@ public class PTTimer {
     static var fMinute = ""
     static var fSecond = ""
     static var fTitle = ""
-    public static func ptInitialLoad() -> [Any]{
-    //Setting up first track
+    public static func ptInit() -> [Any] {
         ptTitle = PTPlayMusic.getTitle(count: tCount)
         ptArtist = PTPlayMusic.getArtist(count: tCount)
-        ptArt = PTPlayMusic.getArtwork(count: tCount)
         ptPreview = PTPlayMusic.getPreviewuRL(count: tCount)
         nextTrack = loadNextTrack()
         
@@ -40,12 +39,14 @@ public class PTTimer {
         trackData.append(ptTitle)
         trackData.append(ptArtist)
         trackData.append(ptArt)
-        
+        //ptInitialLoad()
+        return trackData
+    }
+    public static func ptInitialLoad() {
         let fUrl = URL(string: ptPreview)
         let fPlayerItem: AVPlayerItem = AVPlayerItem(url: fUrl!)
         player = AVPlayer(playerItem: fPlayerItem)
-        player?.pause()
-        return trackData
+        //player?.pause()
     }
     public static func ptStart() {
         print("Starting Player")
@@ -62,22 +63,17 @@ public class PTTimer {
             //Setting up tracks
             ptTitle = PTPlayMusic.getTitle(count: tCount)
             ptArtist = PTPlayMusic.getArtist(count: tCount)
-            ptArt = PTPlayMusic.getArtwork(count: tCount)
             ptPreview = PTPlayMusic.getPreviewuRL(count: tCount)
-            player = AVPlayer(playerItem: nextTrack)
-            print("Play next track")
             player?.play()
-            nextTrack = loadNextTrack()
+            //PTPlayMusic.prepareImage()
         }
         static func loadNextTrack() -> AVPlayerItem {
-            print("Load Function called")
-            print(tCount)
             let ptNextPreview = PTPlayMusic.getPreviewuRL(count: tCount)
             let url = URL(string: ptNextPreview)
             let nextTrack: AVPlayerItem = AVPlayerItem(url: url!)
+            player = AVPlayer(playerItem: nextTrack)
+            PTPlayMusic.prepareImage()
             tCount += 1
-            print("Count has been incremented")
-            print(tCount)
             return nextTrack
         }
         public static func ptStop() {
@@ -85,9 +81,6 @@ public class PTTimer {
             isTimerRunning = false
             timer.invalidate()
         }
-        //@objc public static func playerDidFinishPlaying(note: NSNotification) {
-        //    print("Song Finished - Loading next")
-        //}
         public static func ptBackToList() {
             player!.pause()
             isTimerRunning = false
@@ -100,16 +93,3 @@ public class PTTimer {
             counter = 0.0
         }
     }
-    extension UIImageView {
-        func loadImage(url: URL) {
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: url) {
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self?.image = image
-                        }
-                    }
-                }
-            }
-        }
-}
