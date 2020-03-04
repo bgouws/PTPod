@@ -8,30 +8,44 @@
 import Foundation
 
 public class PTPlayMusic {
-    //var ptDetails = [PTTrackDetails]()
     public static var ptArtwork: [UIImage] = []
     public static var ptTitle: [String] = []
     public static var ptArtist: [String] = []
     public static var ptPreviewUrl: [String] = []
+    public static var ptArtString: [String] = []
+    public static var currentImage: [UIImage] = []
+    static var count = 0
     
     public static func readData() {
-        print("Calling Api")
         PTApiCall.ptPreparePlayList()
     }
-    public static func setData(artist: [String], title: [String], artwork: [UIImage], previewURL: [String]){
+    public static func setData(artist: [String], title: [String],previewURL: [String], artString: [String]){
         self.ptTitle = title
         self.ptArtist = artist
-        self.ptArtwork = artwork
         self.ptPreviewUrl = previewURL
+        self.ptArtString = artString
+        prepareImage()
+    }
+    public static func prepareImage() {
+        let url = ptArtString[count]
+        let finalURL = URL(string: url)
+        if let data = try? Data(contentsOf: finalURL!) {
+            if let image = UIImage(data: data){
+                DispatchQueue.main.async {
+                    currentImage.append(image)
+                }
+            }
+        }
+        self.count += 1
+    }
+    public static func getImage(count: Int) -> UIImage {
+        return currentImage[count]
     }
     public static func getTitle(count: Int) -> String {
         return ptTitle[count]
     }
     public static func getArtist(count: Int) -> String {
         return ptArtist[count]
-    }
-    public static func getArtwork(count: Int) -> UIImage {
-        return ptArtwork[count]
     }
     public static func getPreviewuRL(count: Int) -> String {
         return ptPreviewUrl[count]
