@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/PTFramework.svg?style=flat)](https://cocoapods.org/pods/PTFramework)
 [![License](https://img.shields.io/cocoapods/l/PTFramework.svg?style=flat)](https://cocoapods.org/pods/PTFramework)
 [![Platform](https://img.shields.io/cocoapods/p/PTFramework.svg?style=flat)](https://cocoapods.org/pods/PTFramework)
+[![codecov](https://codecov.io/gh/bgouws/PTPod/branch/master/graph/badge.svg)](https://codecov.io/gh/bgouws/PTPod)
 
 ## Example
 
