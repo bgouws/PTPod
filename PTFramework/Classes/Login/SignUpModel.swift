@@ -10,24 +10,10 @@ import FirebaseDatabase
 import FirebaseAuth
 
 public class PTCreateUser {
-    public static func ptCreateUser(email: String, password: String) -> Bool {
-        var success = false
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            if let error = error {
-                print("Failed to create user ", error.localizedDescription)
-                success = false
-            }
-            guard let uid = result?.user.uid else { return }
-            Database.database().reference().child("users").child(uid).updateChildValues(
-                ["email": email], withCompletionBlock: { error, _ in
-                if let error = error {
-                    print("Failed to update database values with error: ", error.localizedDescription)
-                    return
-                    }
-                    print("Successful Sign Up - With PTFramework")
-                    success = true
-            })
+    public static func ptSignUpNow(email: String, password: String, completion: @escaping (_ val: Bool) -> ()) {
+        _ = Auth.auth().createUser(withEmail:  email, password: password) {
+        (result, error) in let success = (error == nil)
+        completion(success)
         }
-        return true
     }
 }
