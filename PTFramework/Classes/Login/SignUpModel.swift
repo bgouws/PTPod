@@ -10,7 +10,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 public class PTCreateUser {
-    public static func ptSignUpNow(email: String, password: String, completion: @escaping (_ val: Bool) -> ()) {
+    public func ptSignUpNow(email: String, password: String, completion: @escaping (_ val: Bool) -> ()) {
         _ = Auth.auth().createUser(withEmail:  email, password: password) {
         (result, error) in let success = (error == nil)
         completion(success)

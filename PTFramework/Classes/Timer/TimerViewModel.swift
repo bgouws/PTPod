@@ -10,25 +10,29 @@ import AVFoundation
 import CoreMedia
 
 public class PTTimer {
-    static var ptTitle = ""
-    static var ptArtist = ""
-    static var ptArt = UIImage()
-    static var ptPreview = ""
-    static var tCount = 0
-    static var pCount = 0
-    static var nextTrack: AVPlayerItem?
-    static var finalTitle = "Default"
-    static var finalArtist = "Default"
-    static var player: AVPlayer?
-    static var playerItem: AVPlayerItem?
-    static var timer = Timer()
-    public static var isTimerRunning = false
-    static var counter = 0.0
-    static var fHour = ""
-    static var fMinute = ""
-    static var fSecond = ""
-    static var fTitle = ""
-    public static func ptInit() -> [Any] {
+    var ptTitle = ""
+    var ptArtist = ""
+    var ptArt = UIImage()
+    var ptPreview = ""
+    var tCount = 0
+    var pCount = 0
+    var nextTrack: AVPlayerItem?
+    var finalTitle = "Default"
+    var finalArtist = "Default"
+    var player: AVPlayer?
+    var playerItem: AVPlayerItem?
+    var timer = Timer()
+    public var isTimerRunning = false
+    var counter = 0.0
+    var fHour = ""
+    var fMinute = ""
+    var fSecond = ""
+    var fTitle = ""
+    let myPTPlayMusic = PTPlayMusic()
+    public init() {
+        
+    }
+    public func ptInit() -> [Any] {
         ptTitle = PTPlayMusic.getTitle(count: tCount)
         ptArtist = PTPlayMusic.getArtist(count: tCount)
         ptPreview = PTPlayMusic.getPreviewuRL(count: tCount)
@@ -42,24 +46,24 @@ public class PTTimer {
         //ptInitialLoad()
         return trackData
     }
-    public static func ptInitialLoad() {
+    public func ptInitialLoad() {
         let fUrl = URL(string: ptPreview)
         let fPlayerItem: AVPlayerItem = AVPlayerItem(url: fUrl!)
         player = AVPlayer(playerItem: fPlayerItem)
         //player?.pause()
     }
-    public static func ptStart() {
+    public func ptStart() {
         print("Starting Player")
         player!.play()
     }
     
-    public static func ptStopPlayback() {
+    public func ptStopPlayback() {
         player!.pause()
     }
-        static func timerSetUp() {
+       public func timerSetUp() {
             isTimerRunning = true
         }
-        public static func setupTrack() {
+        public func setupTrack() {
             //Setting up tracks
             ptTitle = PTPlayMusic.getTitle(count: tCount)
             ptArtist = PTPlayMusic.getArtist(count: tCount)
@@ -67,7 +71,7 @@ public class PTTimer {
             player?.play()
             //PTPlayMusic.prepareImage()
         }
-        static func loadNextTrack() -> AVPlayerItem {
+        public func loadNextTrack() -> AVPlayerItem {
             let ptNextPreview = PTPlayMusic.getPreviewuRL(count: tCount)
             let url = URL(string: ptNextPreview)
             let nextTrack: AVPlayerItem = AVPlayerItem(url: url!)
@@ -76,17 +80,17 @@ public class PTTimer {
             tCount += 1
             return nextTrack
         }
-        public static func ptStop() {
+        public func ptStop() {
             player?.pause()
             isTimerRunning = false
             timer.invalidate()
         }
-        public static func ptBackToList() {
+        public func ptBackToList() {
             player!.pause()
             isTimerRunning = false
             counter = 0.0
         }
-        public static func ptResetTimer() {
+        public func ptResetTimer() {
             player?.pause()
             isTimerRunning = false
             timer.invalidate()

@@ -51,7 +51,7 @@ public class PTApiCall {
     }
     public static func ptPreparePlayList() {
         var list = [PTTrackDetails]()
-        let myRequest = PTApiCall.PTTrackRequest.init(trackTitle: "Metal", trackArtist: "")
+        let myRequest = PTApiCall.PTTrackRequest.init(trackTitle: "Rock", trackArtist: "")
         myRequest.ptGetData { result in
             switch result {
             case .failure(let error): print(error)
@@ -93,6 +93,7 @@ public class PTApiCall {
                 artArr.append(data[3])
                 previewURL.append(data[4])
             }
+            //let myPTPlayMusic = PTPlayMusic()
             PTPlayMusic.setData(artist: artistArr, title: titleArr,previewURL: previewURL,artString: artArr)
             print("#############################")
             print("Successfully populated arrays")

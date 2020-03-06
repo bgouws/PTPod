@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 
 public class PTSignOut {
-    public static func ptSignOutUser() {
+    public func ptSignOutUser() {
         do {
             try Auth.auth().signOut()
         } catch let error {
