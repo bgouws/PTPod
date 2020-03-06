@@ -8,7 +8,7 @@
 import Foundation
 
 public class PTPlayMusic {
-    public static var ptArtwork: [UIImage] = []
+    public var ptArtwork: [UIImage] = []
     public static var ptTitle: [String] = []
     public static var ptArtist: [String] = []
     public static var ptPreviewUrl: [String] = []
@@ -16,8 +16,11 @@ public class PTPlayMusic {
     public static var currentImage: [UIImage] = []
     static var count = 0
     
-    public static func readData() {
+    public func readData() {
         PTApiCall.ptPreparePlayList()
+    }
+    public init() {
+        
     }
     public static func setData(artist: [String], title: [String],previewURL: [String], artString: [String]){
         self.ptTitle = title
@@ -32,7 +35,7 @@ public class PTPlayMusic {
         if let data = try? Data(contentsOf: finalURL!) {
             if let image = UIImage(data: data){
                 DispatchQueue.main.async {
-                    currentImage.append(image)
+                    self.currentImage.append(image)
                 }
             }
         }

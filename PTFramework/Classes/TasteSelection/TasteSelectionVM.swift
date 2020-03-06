@@ -10,11 +10,15 @@ import FirebaseDatabase
 import FirebaseAuth
 
 public class PTTasteSelection {
-    public static func ptSaveMusicTaste(taste: [String]) {
-        //Calling Model
-        PTTaste.ptStoreTaste(taste: taste)
+    public init() {
+        
     }
-    public static func ptCheckList(value: String, taste: [String]) -> Bool {
+    public func ptSaveMusicTaste(taste: [String]) {
+        //Calling Model
+        let myPTTaste = PTTaste()
+        myPTTaste.ptStoreTaste(taste: taste)
+    }
+    public func ptCheckList(value: String, taste: [String]) -> Bool {
         for genre in taste where genre == value {
             return true
         }

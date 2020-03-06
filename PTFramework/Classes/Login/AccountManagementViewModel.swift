@@ -6,23 +6,32 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 public class PTAccountManagement {
-    public static func ptSignIn(email: String, password: String, completion: @escaping (_ val: Bool) -> ()) {
-        _ = PTSignIn.ptSignIn(email, password) { (success) in
+    public init() {
+    }
+    public func ptSignIn(email: String, password: String, completion: @escaping (_ val: Bool) -> ()) {
+        let myPTSignIn = PTSignIn()
+        _ = myPTSignIn.ptSignIn(email, password) { (success) in
             print(success)
             completion(success)
         }
     }
-    public static func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (_ val: Bool) -> ()) {
-        if PTValidation.ptValidationCheckSignUp(email: email, password: password, conPassword: conPassword) {
-            _ = PTCreateUser.ptSignUpNow(email: email, password: password, completion: { (success) in
-                print(success)
-                completion(success)
-            })
-        }
+    public func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (_ val: Bool) -> ()) {
+        //var myPTValidation = PTValidation()
+        //myPTValidation.ptValidationCheckSignUp(email: email, password: password, conPassword: conPassword)
+         let myPTCreateUser = PTCreateUser()
+        _ = myPTCreateUser.ptSignUpNow(email: email, password: password, completion: { (success) in
+            print(success)
+            completion(success)
+        })
     }
-    public static func ptSignOut() {
-        PTSignOut.ptSignOutUser()
+    public func ptSignOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
     }
 }

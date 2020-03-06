@@ -8,24 +8,30 @@
 import Foundation
 
 public class PTValidation {
-    public static func ptValidationCheckSignIn(email: String, password: String) -> Bool {
+    public func ptValidationCheckSignIn(email: String, password: String) -> Bool {
+        var flag = false
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         
         if (emailPred.evaluate(with: email) && password != "") {
             print("Passed Validation")
-            return true
+            flag = true
+        } else {
+            print("Failed Validation")
+            flag = false
         }
-        print("Failed Validation")
-        return false
+        return flag
     }
-    public static func ptValidationCheckSignUp(email: String, password: String, conPassword: String) -> Bool {
+    public func ptValidationCheckSignUp(email: String, password: String, conPassword: String) -> Bool {
+        var flag =  false
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         
         if (emailPred.evaluate(with: email) && password != "" && password == conPassword) {
-            return true
+            flag =  true
+        } else {
+            flag = false
         }
-        return false
+        return flag
     }
 }
