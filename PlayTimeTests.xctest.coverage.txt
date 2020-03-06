@@ -1,0 +1,104 @@
+/Users/bgouws/Desktop/PlayTimeRedux/PlayTime/Play Time/Play TimeTests/AccountManagement.swift:
+    1|       |//
+    2|       |//  AccountManagement.swift
+    3|       |//  Play Time
+    4|       |//
+    5|       |//  Created by Brandon Gouws on 2020/03/05.
+    6|       |//  Copyright © 2020 Brandon Gouws. All rights reserved.
+    7|       |//
+    8|       |
+    9|       |import Foundation
+   10|       |import XCTest
+   11|       |@testable import Play_Time
+   12|       |@testable import PTFramework
+   13|       |//swiftlint:disable all
+   14|       |class AccountManagement_Tests: XCTestCase {
+   15|       |    var signOutUnderTest : PTAccountManagement!
+   16|      0|    override func setUp() {
+   17|      0|        // Put setup code here. This method is called before the invocation of each test method in the class.
+   18|      0|        signOutUnderTest = PTAccountManagement()
+   19|      0|    }
+   20|       |
+   21|      0|    override func tearDown() {
+   22|      0|        // Put teardown code here. This method is called after the invocation of each test method in the class.
+   23|      0|    }
+   24|       |
+   25|      0|    func testUserSuccessfulLogout() {
+   26|      0|        signOutUnderTest.ptSignOut()
+   27|      0|    }
+   28|       |
+   29|      0|    func testPerformanceExample() {
+   30|      0|        // This is an example of a performance test case.
+   31|      0|        self.measure {
+   32|      0|            // Put the code you want to measure the time of here.
+   33|      0|        }
+   34|      0|    }
+   35|       |}
+
+/Users/bgouws/Desktop/PlayTimeRedux/PlayTime/Play Time/Play TimeTests/ValidationTest.swift:
+    1|       |//
+    2|       |//  Play_TimeTests.swift
+    3|       |//  Play TimeTests
+    4|       |//
+    5|       |//  Created by Brandon Gouws on 2020/02/04.
+    6|       |//  Copyright © 2020 Brandon Gouws. All rights reserved.
+    7|       |//
+    8|       |
+    9|       |import XCTest
+   10|       |@testable import Play_Time
+   11|       |@testable import PTFramework
+   12|       |//swiftlint:disable all
+   13|       |class Play_TimeTests: XCTestCase {
+   14|       |//swiftlint:enable all
+   15|       |    var systemUnderTest: PTAccountManagement!
+   16|       |    var validationUnderTest: PTValidation!
+   17|       |    var anotherTest: HomeViewController!
+   18|      5|    override func setUp() {
+   19|      5|        // Put setup code here. This method is called before the invocation of each test method in the class.
+   20|      5|        systemUnderTest = PTAccountManagement()
+   21|      5|        anotherTest = HomeViewController()
+   22|      5|        validationUnderTest = PTValidation()
+   23|      5|    }
+   24|       |
+   25|      5|    override func tearDown() {
+   26|      5|        // Put teardown code here. This method is called after the invocation of each test method in the class.
+   27|      5|    }
+   28|       |
+   29|      1|    func testUserVaidationSignInCorrect() {
+   30|      1|        let email = "brandongouws100@gmail.com"
+   31|      1|        let password = "happydays"
+   32|      1|        let result = validationUnderTest.ptValidationCheckSignIn(email: email, password: password)
+   33|      1|        XCTAssert(result)
+   34|      1|    }
+   35|      1|    func testUserVaidationSignInIncorrect() {
+   36|      1|        let email = "bradongouws100gmail.com"
+   37|      1|        let password = ""
+   38|      1|        let result = validationUnderTest.ptValidationCheckSignIn(email: email, password: password)
+   39|      1|        XCTAssert(!result)
+   40|      1|    }
+   41|      1|    func testUserValidationSignUpCorrect() {
+   42|      1|        let email = "brandongouws100@gmail.com"
+   43|      1|        let password = "happydays"
+   44|      1|        let conPassword = "happydays"
+   45|      1|        let result = validationUnderTest.ptValidationCheckSignUp(email: email,
+   46|      1|                                                                 password: password, conPassword: conPassword)
+   47|      1|        XCTAssert(result)
+   48|      1|    }
+   49|      1|    func testUserValidationSignUpIncorrect() {
+   50|      1|        let email = "brandongouws100gmail.com"
+   51|      1|        let password = "happydays"
+   52|      1|        let conPassword = "saddays"
+   53|      1|        let result = validationUnderTest.ptValidationCheckSignUp(email: email,
+   54|      1|                                                                 password: password, conPassword: conPassword)
+   55|      1|        XCTAssert(!result)
+   56|      1|    }
+   57|       |
+   58|      1|    func testPerformanceExample() {
+   59|      1|        // This is an example of a performance test case.
+   60|     10|        self.measure {
+   61|     10|            // Put the code you want to measure the time of here.
+   62|     10|        }
+   63|      1|    }
+   64|       |
+   65|       |}
+
