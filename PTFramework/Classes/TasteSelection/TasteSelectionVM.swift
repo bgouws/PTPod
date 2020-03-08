@@ -19,9 +19,12 @@ public class PTTasteSelection {
         myPTTaste.ptStoreTaste(taste: taste)
     }
     public func ptCheckList(value: String, taste: [String]) -> Bool {
+        var flag = false
         for genre in taste where genre == value {
-            return true
+            flag = true
+            return flag
         }
-          return false
+        flag = false
+        return flag
     }
 }

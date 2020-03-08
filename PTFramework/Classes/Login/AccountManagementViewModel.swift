@@ -18,20 +18,22 @@ public class PTAccountManagement {
             completion(success)
         }
     }
-    public func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (_ val: Bool) -> ()) {
-        //var myPTValidation = PTValidation()
-        //myPTValidation.ptValidationCheckSignUp(email: email, password: password, conPassword: conPassword)
-         let myPTCreateUser = PTCreateUser()
-        _ = myPTCreateUser.ptSignUpNow(email: email, password: password, completion: { (success) in
-            print(success)
-            completion(success)
-        })
-    }
+    
     public func ptSignOut() {
         do {
             try Auth.auth().signOut()
         } catch let signOutError as NSError {
           print ("Error signing out: %@", signOutError)
         }
+    }
+}
+
+extension PTAccountManagement: LoginProtocol {
+    public func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (Bool, _ String: Any?) -> ()) {
+         let myPTCreateUser = PTCreateUser()
+         myPTCreateUser.ptSignUpNow(email: email, password: password, completion: { (success) in
+            print(success)
+            completion(success, "Success")
+        })
     }
 }
