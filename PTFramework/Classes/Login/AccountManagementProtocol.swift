@@ -10,4 +10,6 @@ import Foundation
 
 protocol LoginProtocol {
     func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (Bool, _ String: Any?) -> ())
+    func ptSignIn(email: String, password: String, completion: @escaping (Bool, _ String: Any?) -> ())
+    func ptSignOut() -> Bool
 }

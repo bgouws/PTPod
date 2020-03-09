@@ -43,25 +43,26 @@ public class PTTimer {
         trackData.append(ptTitle)
         trackData.append(ptArtist)
         trackData.append(ptArt)
-        //ptInitialLoad()
         return trackData
     }
     public func ptInitialLoad() {
         let fUrl = URL(string: ptPreview)
         let fPlayerItem: AVPlayerItem = AVPlayerItem(url: fUrl!)
         player = AVPlayer(playerItem: fPlayerItem)
-        //player?.pause()
     }
-    public func ptStart() {
+    public func ptStart() -> Bool {
         print("Starting Player")
         player!.play()
+        isTimerRunning = true
+        return isTimerRunning
     }
     
     public func ptStopPlayback() {
         player!.pause()
     }
-       public func timerSetUp() {
+       public func timerSetUp() -> Bool {
             isTimerRunning = true
+            return isTimerRunning
         }
         public func setupTrack() {
             //Setting up tracks
@@ -69,7 +70,6 @@ public class PTTimer {
             ptArtist = PTPlayMusic.getArtist(count: tCount)
             ptPreview = PTPlayMusic.getPreviewuRL(count: tCount)
             player?.play()
-            //PTPlayMusic.prepareImage()
         }
         public func loadNextTrack() -> AVPlayerItem {
             let ptNextPreview = PTPlayMusic.getPreviewuRL(count: tCount)
@@ -80,20 +80,23 @@ public class PTTimer {
             tCount += 1
             return nextTrack
         }
-        public func ptStop() {
+        public func ptStop() -> Bool {
             player?.pause()
             isTimerRunning = false
             timer.invalidate()
+            return isTimerRunning
         }
-        public func ptBackToList() {
+        public func ptBackToList() -> Bool {
             player!.pause()
             isTimerRunning = false
             counter = 0.0
+            return isTimerRunning
         }
-        public func ptResetTimer() {
+        public func ptResetTimer() -> Bool {
             player?.pause()
             isTimerRunning = false
             timer.invalidate()
             counter = 0.0
+            return isTimerRunning
         }
     }

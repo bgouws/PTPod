@@ -11,29 +11,31 @@ import FirebaseAuth
 public class PTAccountManagement {
     public init() {
     }
-    public func ptSignIn(email: String, password: String, completion: @escaping (_ val: Bool) -> ()) {
-        let myPTSignIn = PTSignIn()
-        _ = myPTSignIn.ptSignIn(email, password) { (success) in
-            print(success)
-            completion(success)
-        }
-    }
-    
-    public func ptSignOut() {
+}
+
+extension PTAccountManagement: LoginProtocol {
+    public func ptSignOut() -> Bool {
         do {
             try Auth.auth().signOut()
         } catch let signOutError as NSError {
           print ("Error signing out: %@", signOutError)
         }
+        return true
     }
-}
-
-extension PTAccountManagement: LoginProtocol {
-    public func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (Bool, _ String: Any?) -> ()) {
-         let myPTCreateUser = PTCreateUser()
-         myPTCreateUser.ptSignUpNow(email: email, password: password, completion: { (success) in
+    
+    public func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (Bool, Any?) -> ()) {
+        let myPTCreateUser = PTCreateUser()
+        myPTCreateUser.ptSignUpNow(email: email, password: password, completion: { (success) in
+           print(success)
+           completion(success, "Success")
+        }
+    )}
+    
+    public func ptSignIn(email: String, password: String, completion: @escaping (Bool, Any?) -> ()) {
+        let myPTSignIn = PTSignIn()
+        _ = myPTSignIn.ptSignIn(email, password) { (success) in
             print(success)
             completion(success, "Success")
-        })
+        }
     }
 }
