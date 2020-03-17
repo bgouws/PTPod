@@ -7,13 +7,17 @@
 
 import Foundation
 import FirebaseAuth
+import UIKit
 
 public class PTAccountManagement {
     public init() {
+        
     }
 }
 
 extension PTAccountManagement: LoginProtocol {
+    
+    
     public func ptSignOut() -> Bool {
         do {
             try Auth.auth().signOut()
@@ -38,4 +42,5 @@ extension PTAccountManagement: LoginProtocol {
             completion(success, "Success")
         }
     }
+    
 }
