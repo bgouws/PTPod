@@ -11,9 +11,16 @@ import FirebaseAuth
 
 public class PTCreateUser {
     public func ptSignUpNow(email: String, password: String, completion: @escaping (_ val: Bool) -> ()) {
-        _ = Auth.auth().createUser(withEmail:  email, password: password) {
-        (result, error) in let success = (error == nil)
-        completion(success)
+        let myValidation = Valid()
+        if myValidation.signUpValidation(email, password, password) {
+            _ = Auth.auth().createUser(withEmail:  email, password: password) {
+            (result, error) in let success = (error == nil)
+            completion(success)
+            }
+        } else {
+            let validationFailure = false
+            completion(validationFailure)
         }
+        
     }
 }
