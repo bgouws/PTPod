@@ -7,7 +7,7 @@
 
 #import "Valid.h"
 
-@implementation Valid
+@implementation Valid 
 
 - (BOOL) signUpValidation: (NSString*) email : (NSString*) password : (NSString*) conPassword
 {
