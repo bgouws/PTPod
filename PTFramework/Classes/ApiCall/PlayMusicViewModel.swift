@@ -53,4 +53,15 @@ public class PTPlayMusic {
     public static func getPreviewuRL(count: Int) -> String {
         return ptPreviewUrl[count]
     }
+    public static func loadNextImage(nextImg: Int, completion: @escaping(UIImage) -> Void) {
+        let url = ptArtString[nextImg]
+        let finalURL = URL(string: url)
+        if let data = try? Data(contentsOf: finalURL!) {
+            if let image = UIImage(data: data){
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            }
+        }
+    }
 }
