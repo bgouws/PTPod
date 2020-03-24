@@ -12,6 +12,6 @@
 @required
 - (BOOL)signInValidation:(NSString*) email :(NSString*) password;
 - (BOOL)signUpValidation:(NSString*) email :(NSString*) password :(NSString*) conPassword;
-- (BOOL)validateEmail: (NSString*) email;
+- (BOOL)checkEmail: (NSString*) email;
 @end
 
