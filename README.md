@@ -17,8 +17,6 @@ PTFramework makes use of the Apple Music API in order to stream music content an
 [![Platform](https://img.shields.io/cocoapods/p/PTFramework.svg?style=flat)](https://cocoapods.org/pods/PTFramework)
 [![codecov](https://codecov.io/gh/bgouws/PTPod/branch/master/graph/badge.svg)](https://codecov.io/gh/bgouws/PTPod)
 
-## Requirements
-
 ## Installation
 
 PTFramework is available through [CocoaPods](https://cocoapods.org). To install
