@@ -24,6 +24,20 @@
     }];
 }
 
+- (void) setdata:(void (^)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))completion
+{
+    self.firstName = @"";
+    self.lastName = @"";
+    self.bio = @"";
+    ProfileModel *profile =[[ProfileModel alloc] init];
+    [profile readData:^(NSString * _Nonnull firstName, NSString * _Nonnull lastName, NSString * _Nonnull bio) {
+        self.firstName = firstName;
+        self.lastName = lastName;
+        self.bio = bio;
+        completion(self.firstName, self.lastName, self.bio);
+    }];
+}
+
 - (NSString *) getFirstName
 {
     return self.firstName;
