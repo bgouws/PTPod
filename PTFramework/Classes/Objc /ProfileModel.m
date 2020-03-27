@@ -23,4 +23,14 @@
         NSLog(@"%@", error.localizedDescription);
     }];
 }
+
+- (void) updateData:(NSString*) firstName : (NSString*) lastName : (NSString*) bio
+{
+    self.ref = [[FIRDatabase database] reference];
+    NSString *userID = [FIRAuth auth].currentUser.uid;
+    NSDictionary *dict = @{@"firstName": firstName,
+                           @"lastName": lastName,
+                           @"bio": bio};
+    [[[[_ref child:@"users"] child:userID] child:@"Details"] setValue:(dict)];
+}
 @end

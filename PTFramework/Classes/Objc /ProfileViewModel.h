@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *) getLastName;
 - (NSString *) getBio;
 - (void) setdata:(void (^)(NSString *firstName, NSString *lastName, NSString *bio))completion;
+- (void) updateData:(NSString*) firstName : (NSString*) lastName : (NSString*) bio;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *bio;

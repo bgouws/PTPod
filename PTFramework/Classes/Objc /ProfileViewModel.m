@@ -38,6 +38,13 @@
     }];
 }
 
+- (void) updateData:(NSString *)firstName :(NSString *)lastName :(NSString *)bio
+{
+    ProfileModel *profile =[[ProfileModel alloc] init];
+    [profile updateData:firstName :lastName :bio];
+    
+}
+
 - (NSString *) getFirstName
 {
     return self.firstName;
