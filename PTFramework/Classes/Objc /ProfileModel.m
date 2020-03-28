@@ -10,7 +10,7 @@
 
 @implementation ProfileModel
 
-- (void) readData:(void (^)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))completion
+- (void) readData:(void (^)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull, UIImage * _Nonnull))completion
 {
     self.ref = [[FIRDatabase database] reference];
     NSString *userID = [FIRAuth auth].currentUser.uid;
@@ -18,7 +18,10 @@
         NSString *firstName = snapshot.value[@"firstName"];
         NSString *lastName = snapshot.value[@"lastName"];
         NSString *bio = snapshot.value[@"bio"];
-        completion(firstName, lastName, bio);
+        [self getProfileImage:userID :^(UIImage * _Nonnull image) {
+            completion(firstName, lastName, bio, image);
+        }];
+        
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
@@ -32,5 +35,31 @@
                            @"lastName": lastName,
                            @"bio": bio};
     [[[[_ref child:@"users"] child:userID] child:@"Details"] setValue:(dict)];
+    
+}
+
+- (void) setProfileImage: (NSString*) userID : (UIImage*)img : (void (^)(NSString * _Nonnull))completion
+{
+    FIRStorage *storage = [FIRStorage storage];
+    NSString *path = [NSString stringWithFormat:@"%@", userID];
+    FIRStorageReference *ref = [storage referenceWithPath: path];
+    NSData *data = UIImageJPEGRepresentation(img, 0.75f);
+    [ref putData:data];
+    NSLog(@"%s", "Successfully Stored Image");
+}
+
+- (void) getProfileImage: (NSString*) userID : (void (^)(UIImage * _Nonnull))completion {
+    FIRStorage *storage = [FIRStorage storage];
+    NSString *path = [NSString stringWithFormat:@"%@", userID];
+    FIRStorageReference *islandRef = [storage referenceWithPath: path];
+    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+    [islandRef dataWithMaxSize:2 * 1024 * 1024 completion:^(NSData *data, NSError *error){
+      if (error != nil) {
+        // Will handle errors here eventually
+      } else {
+        UIImage *islandImage = [UIImage imageWithData:data];
+          completion(islandImage);
+      }
+    }];
 }
 @end
