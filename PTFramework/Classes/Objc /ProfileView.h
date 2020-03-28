@@ -9,11 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProfileView : UIViewController
+@interface ProfileView : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *bio;
+@property (strong, nonatomic) UIImage *img;
 
 @end
 
