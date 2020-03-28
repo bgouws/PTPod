@@ -38,8 +38,6 @@
     _btnUpdate.layer.cornerRadius = 8.0;
     _btnUpdate.clipsToBounds = YES;
     _btnUpdate.layer.masksToBounds = NO;
-    
-    
     //Calling view model for data
     ProfileViewModel *profile =[[ProfileViewModel alloc] init];
     [profile setdata:^(NSString * _Nonnull firstName, NSString * _Nonnull lastName, NSString * _Nonnull bio, UIImage * _Nonnull image) {
@@ -66,7 +64,6 @@
         nil;
     }];
 }
-
 - (IBAction)btnProfilePicTapped:(id)sender {
     
     UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
@@ -89,7 +86,6 @@
         [view dismissViewControllerAnimated:YES completion:nil];
         
     }];
-    
     UIAlertAction* library = [UIAlertAction
                               actionWithTitle:@"Library"
                               style:UIAlertActionStyleDefault
@@ -110,7 +106,6 @@
                              handler:^(UIAlertAction * action)
                              {
         [view dismissViewControllerAnimated:YES completion:nil];
-        
     }];
     [view addAction:camera];
     [view addAction:library];

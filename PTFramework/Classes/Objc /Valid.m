@@ -8,7 +8,6 @@
 #import "Valid.h"
 
 @implementation Valid 
-
 - (BOOL) signUpValidation: (NSString*) email : (NSString*) password : (NSString*) conPassword
 {
     BOOL flag = [self checkEmail: email];
@@ -19,7 +18,6 @@
     }
     return flag;
 }
-
 - (BOOL) signInValidation: (NSString*) email : (NSString*) password
 {
     BOOL flag = [self checkEmail: email];
@@ -30,7 +28,6 @@
     }
     return flag;
 }
-
 - (BOOL) checkEmail: (NSString*) email
 {
     BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
