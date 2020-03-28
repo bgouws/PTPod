@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *bio;
 @property (strong, nonatomic) UIImage *image;
 @property (nonatomic, assign) Class profileModel;
-
 @end
 
 NS_ASSUME_NONNULL_END

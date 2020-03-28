@@ -13,7 +13,15 @@ public class PTTaste {
     public func ptStoreTaste(taste: [String]) {
         let ref = Database.database().reference()
         let user = Auth.auth().currentUser?.uid
-        ref.child("users").child(user!).setValue(["Music Taste": taste])
+        ref.child("users").child(user!).child("MusicTaste").setValue(["MusicTaste": taste])
+        ref.child("users").child(user!).child("Details").setValue(["bio": "Tell us something about yourself!",
+                                                                   "firstName": "Put your name here!",
+                                                                   "lastName": "Put your last name here!"])
         print("Music taste successfully saved - PTFramework")
+        let profile = ProfileModel()
+        let image = UIImage(named: "DefaultUser")
+        profile.setProfileImage(user!, image!) { (output) in
+            print(output)
         }
+    }
 }

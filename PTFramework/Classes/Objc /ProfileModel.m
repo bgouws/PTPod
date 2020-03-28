@@ -26,7 +26,6 @@
         NSLog(@"%@", error.localizedDescription);
     }];
 }
-
 - (void) updateData:(NSString*) firstName : (NSString*) lastName : (NSString*) bio
 {
     self.ref = [[FIRDatabase database] reference];
@@ -37,7 +36,6 @@
     [[[[_ref child:@"users"] child:userID] child:@"Details"] setValue:(dict)];
     
 }
-
 - (void) setProfileImage: (NSString*) userID : (UIImage*)img : (void (^)(NSString * _Nonnull))completion
 {
     FIRStorage *storage = [FIRStorage storage];
@@ -45,9 +43,9 @@
     FIRStorageReference *ref = [storage referenceWithPath: path];
     NSData *data = UIImageJPEGRepresentation(img, 0.75f);
     [ref putData:data];
+    completion(@"Successfully Stored Image");
     NSLog(@"%s", "Successfully Stored Image");
 }
-
 - (void) getProfileImage: (NSString*) userID : (void (^)(UIImage * _Nonnull))completion {
     FIRStorage *storage = [FIRStorage storage];
     NSString *path = [NSString stringWithFormat:@"%@", userID];
