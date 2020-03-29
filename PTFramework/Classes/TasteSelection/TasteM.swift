@@ -17,6 +17,10 @@ public class PTTaste {
         ref.child("users").child(user!).child("Details").setValue(["bio": "Tell us something about yourself!",
                                                                    "firstName": "Put your name here!",
                                                                    "lastName": "Put your last name here!"])
+        ref.child("users").child(user!).child("Tasks").child("Task1").setValue(["Hour" : "00",
+                                                                                "Minute": "01",
+                                                                                "Second": "30",
+                                                                                "Title": "Sample"])
         print("Music taste successfully saved - PTFramework")
         let profile = ProfileModel()
         let image = UIImage(named: "DefaultUser")
