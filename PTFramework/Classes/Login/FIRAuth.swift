@@ -7,22 +7,16 @@
 
 import Foundation
 
-class FIRAuth : LoginProtocol {
+class FIRAuth: LoginProtocol {
     private var firAuth: LoginProtocol
-    
     init(firAuth: LoginProtocol) {
         self.firAuth = firAuth
     }
-    func ptSignIn(email: String, password: String, completion: @escaping (Bool, String) -> ()) {
-        
+    func ptSignIn(email: String, password: String, completion: @escaping (Bool, String) -> Void) {
     }
-    
     func ptSignOut() -> Bool {
         return true
     }
-
-    func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (Bool, String) -> ()) {
-
+    func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (Bool, String) -> Void) {
     }
-    
 }

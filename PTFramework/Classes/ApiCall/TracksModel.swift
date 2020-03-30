@@ -10,7 +10,6 @@ import Foundation
 public struct PTTracks: Decodable {
     var results: [PTTrackDetails]
 }
-
 public struct PTTrackDetails: Decodable {
     var artistName: String
     var trackName: String

@@ -9,9 +9,8 @@
 import Foundation
 
 protocol LoginProtocol: class {
-    func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (Bool, _ String: String) -> ())
-    func ptSignIn(email: String, password: String, completion: @escaping (Bool, _ String: String) -> ())
+    func ptSignUp(email: String, password: String, conPassword: String,
+                  completion: @escaping (Bool, _ String: String) -> Void)
+    func ptSignIn(email: String, password: String, completion: @escaping (Bool, _ String: String) -> Void)
     func ptSignOut() -> Bool
 }
-
-//extension FIRAuth: LoginProtocol {}

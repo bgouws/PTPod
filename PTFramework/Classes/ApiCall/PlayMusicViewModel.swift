@@ -15,14 +15,12 @@ public class PTPlayMusic {
     public static var ptArtString: [String] = []
     public static var currentImage: [UIImage] = []
     static var count = 0
-    
     public func readData() {
         PTApiCall.ptPreparePlayList()
     }
     public init() {
-        
     }
-    public static func setData(artist: [String], title: [String],previewURL: [String], artString: [String]){
+    public static func setData(artist: [String], title: [String], previewURL: [String], artString: [String]) {
         self.ptTitle = title
         self.ptArtist = artist
         self.ptPreviewUrl = previewURL
@@ -33,7 +31,7 @@ public class PTPlayMusic {
         let url = ptArtString[count]
         let finalURL = URL(string: url)
         if let data = try? Data(contentsOf: finalURL!) {
-            if let image = UIImage(data: data){
+            if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
                     self.currentImage.append(image)
                 }
