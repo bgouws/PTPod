@@ -12,11 +12,8 @@ public class PTApiCall {
     public static var titleArr = [String]()
     public static var artArr = [String]()
     public static var previewURL = [String]()
-    
     public static func ptCallApi() {
-        
     }
-    
     public enum PTTracksError:Error {
         case noData
     }
@@ -26,12 +23,12 @@ public class PTApiCall {
         init(trackTitle: String, trackArtist: String) {
             let currentTrackTitle = trackTitle.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
             let currentTrackArtist = trackArtist.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-            let apiQuery = "https://itunes.apple.com/search/media=music&entity=song&term=\(currentTrackTitle)+\(currentTrackArtist)"
+            let link = "https://itunes.apple.com/search/media=music&entity=song&term="
+            let apiQuery = "\(link)\(currentTrackTitle)+\(currentTrackArtist)"
             guard let resourceURL = URL(string: apiQuery) else {fatalError()}
             self.resourceURL = resourceURL
         }
-        
-        public func ptGetData(completion: @escaping(Result<[PTTrackDetails], PTTracksError>) -> Void)  {
+        public func ptGetData(completion: @escaping(Result<[PTTrackDetails], PTTracksError>) -> Void) {
             let dataTask = URLSession.shared.dataTask(with: resourceURL) { data, _, _ in
                 guard let jsonData = data else {
                     completion(.failure(.noData))
@@ -93,12 +90,10 @@ public class PTApiCall {
                 artArr.append(data[3])
                 previewURL.append(data[4])
             }
-            //let myPTPlayMusic = PTPlayMusic()
-            PTPlayMusic.setData(artist: artistArr, title: titleArr,previewURL: previewURL,artString: artArr)
+            PTPlayMusic.setData(artist: artistArr, title: titleArr, previewURL: previewURL, artString: artArr)
             print("#############################")
             print("Successfully populated arrays")
             print("#############################")
         }
     }
 }
-

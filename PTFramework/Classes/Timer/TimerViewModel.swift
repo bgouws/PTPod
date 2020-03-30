@@ -30,14 +30,12 @@ public class PTTimer {
     var fTitle = ""
     let myPTPlayMusic = PTPlayMusic()
     public init() {
-        
     }
     public func ptInit() -> [Any] {
         ptTitle = PTPlayMusic.getTitle(count: tCount)
         ptArtist = PTPlayMusic.getArtist(count: tCount)
         ptPreview = PTPlayMusic.getPreviewuRL(count: tCount)
         nextTrack = loadNextTrack()
-        
         ///Adding track data to an array of any (String, String, UIImage)
         var trackData = [Any]()
         trackData.append(ptTitle)
@@ -56,7 +54,6 @@ public class PTTimer {
         isTimerRunning = true
         return isTimerRunning
     }
-    
     public func ptStopPlayback() {
         player!.pause()
     }

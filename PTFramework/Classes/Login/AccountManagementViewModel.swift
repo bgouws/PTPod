@@ -10,7 +10,7 @@ import FirebaseAuth
 import UIKit
 
 public class PTAccountManagement {
-    weak var view : LoginProtocol?
+    weak var view: LoginProtocol?
     init(view: LoginProtocol?) {
         self.view = view
     }
@@ -19,34 +19,28 @@ public class PTAccountManagement {
         self.init(view: nil)
     }
 }
-
 extension PTAccountManagement: LoginProtocol {
-    
-    
     public func ptSignOut() -> Bool {
         do {
             try Auth.auth().signOut()
         } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
+          print("Error signing out: %@", signOutError)
         }
         return true
     }
-    
-    public func ptSignUp(email: String, password: String, conPassword: String, completion: @escaping (Bool, String) -> ()) {
+    public func ptSignUp(email: String, password: String, conPassword: String,
+                         completion: @escaping (Bool, String) -> Void) {
         let myPTCreateUser = PTCreateUser()
         myPTCreateUser.ptSignUpNow(email: email, password: password, completion: { (success) in
            print(success)
            completion(success, "Success")
         }
     )}
-    
-    
-    public func ptSignIn(email: String, password: String, completion: @escaping (Bool, String) -> ()) {
+    public func ptSignIn(email: String, password: String, completion: @escaping (Bool, String) -> Void) {
         let myPTSignIn = PTSignIn()
         _ = myPTSignIn.ptSignIn(email, password) { (success) in
             print(success)
             completion(success, "Success")
         }
     }
-    
 }

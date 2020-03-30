@@ -11,10 +11,8 @@ import FirebaseAuth
 
 public class PTTasteSelection {
     public init() {
-        
     }
     public func ptSaveMusicTaste(taste: [String]) {
-        //Calling Model
         let myPTTaste = PTTaste()
         myPTTaste.ptStoreTaste(taste: taste)
     }
