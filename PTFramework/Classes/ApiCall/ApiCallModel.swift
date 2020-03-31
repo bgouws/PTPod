@@ -14,7 +14,7 @@ public class PTApiCall {
     public static var previewURL = [String]()
     public static func ptCallApi() {
     }
-    public enum PTTracksError:Error {
+    public enum PTTracksError: Error {
         case noData
     }
     public struct PTTrackRequest {

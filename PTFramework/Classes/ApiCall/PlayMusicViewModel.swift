@@ -55,7 +55,7 @@ public class PTPlayMusic {
         let url = ptArtString[nextImg]
         let finalURL = URL(string: url)
         if let data = try? Data(contentsOf: finalURL!) {
-            if let image = UIImage(data: data){
+            if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
                     completion(image)
                 }

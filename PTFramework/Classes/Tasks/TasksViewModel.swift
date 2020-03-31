@@ -28,7 +28,8 @@ public class TasksViewModel {
             completion(childCount)
         }
     }
-    public func insertTask(taskTitle: String, hour: String, minute: String, second: String, completion: (Bool) -> Void) {
+    public func insertTask(taskTitle: String, hour: String, minute: String,
+                           second: String, completion: (Bool) -> Void) {
         let myData = PTTask(title: "Data", hour: "00", minute: "00", second: "00")
         var outcome = false
         myData.addNewTask(taskTitle: taskTitle, hour: hour, minute: minute, second: second) { (success) in
