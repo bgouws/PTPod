@@ -16,19 +16,19 @@ public class TasksViewModel {
     public func getTasks() -> [PTTask] {
         return tasks
     }
-    public func getListOfTasks(completion: @escaping ([PTTask]) -> ()) {
+    public func getListOfTasks(completion: @escaping ([PTTask]) -> Void) {
         let myData = PTTask(title: "Data", hour: "00", minute: "00", second: "00")
         myData.getTaskList { (tasks) in
             completion(tasks)
         }
     }
-    public func getListOfTasksCount(completion: @escaping (Int) -> ()) {
+    public func getListOfTasksCount(completion: @escaping (Int) -> Void) {
         let myData = PTTask(title: "Data", hour: "00", minute: "00", second: "00")
         myData.getTaskCount { (childCount) in
             completion(childCount)
         }
     }
-    public func insertTask(taskTitle: String, hour: String, minute: String, second: String, completion: (Bool) -> ()) {
+    public func insertTask(taskTitle: String, hour: String, minute: String, second: String, completion: (Bool) -> Void) {
         let myData = PTTask(title: "Data", hour: "00", minute: "00", second: "00")
         var outcome = false
         myData.addNewTask(taskTitle: taskTitle, hour: hour, minute: minute, second: second) { (success) in

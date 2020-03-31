@@ -21,7 +21,7 @@ public class PTTask {
         self.minute = minute
         self.second = second
     }
-    public func getTaskList(completion: @escaping ([PTTask]) -> ()) {
+    public func getTaskList(completion: @escaping ([PTTask]) -> Void) {
         var tasks: [PTTask] = []
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
@@ -43,7 +43,7 @@ public class PTTask {
             }
         }
     }
-    public func getTaskCount(completion: @escaping (Int) -> ()) {
+    public func getTaskCount(completion: @escaping (Int) -> Void) {
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("users").child(userID!).child("Tasks").observeSingleEvent(of: .value) { (snapshot) in

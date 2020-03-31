@@ -19,7 +19,6 @@
 @end
 
 @implementation ProfileView
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -38,6 +37,7 @@
     _btnUpdate.layer.cornerRadius = 8.0;
     _btnUpdate.clipsToBounds = YES;
     _btnUpdate.layer.masksToBounds = NO;
+    //[_txtBio setDelegate: self];
     //Calling view model for data
     ProfileViewModel *profile =[[ProfileViewModel alloc] init];
     [profile setdata:^(NSString * _Nonnull firstName, NSString * _Nonnull lastName, NSString * _Nonnull bio, UIImage * _Nonnull image) {
@@ -47,6 +47,9 @@
         [self->_btnProfilePic setImage:image forState:UIControlStateNormal];
     }];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    self.title = @"Profile";
+}
 - (IBAction)btnUpdateTapped:(id)sender {
     ProfileViewModel *profile =[[ProfileViewModel alloc] init];
     self.firstName = _txtName.text;
@@ -55,7 +58,6 @@
     self.img = _btnProfilePic.imageView.image;
     [profile updateData:self.firstName : self.lastName :self.bio :self.img];
 }
-
 //Image Picker delegates
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
@@ -72,7 +74,6 @@
                                  alertControllerWithTitle:@"Upload a profile picture"
                                  message:@"Select a source"
                                  preferredStyle:UIAlertControllerStyleActionSheet];
-    
     UIAlertAction* camera = [UIAlertAction
                              actionWithTitle:@"Camera"
                              style:UIAlertActionStyleDefault
@@ -84,7 +85,6 @@
             [self presentViewController:imagePicker animated:true completion:nil];
         }
         [view dismissViewControllerAnimated:YES completion:nil];
-        
     }];
     UIAlertAction* library = [UIAlertAction
                               actionWithTitle:@"Library"
@@ -99,7 +99,6 @@
         [view dismissViewControllerAnimated:YES completion:nil];
         
     }];
-    
     UIAlertAction* cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
                              style:UIAlertActionStyleDefault
@@ -113,4 +112,8 @@
     [self presentViewController:view animated:YES completion:nil];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 @end
