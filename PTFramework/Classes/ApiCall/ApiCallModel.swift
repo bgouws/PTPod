@@ -14,7 +14,7 @@ public class PTApiCall {
     public static var previewURL = [String]()
     public static func ptCallApi() {
     }
-    public enum PTTracksError:Error {
+    public enum PTTracksError: Error {
         case noData
     }
     public struct PTTrackRequest {
@@ -63,8 +63,8 @@ public class PTApiCall {
             let fileURL = DocumentDirURL.appendingPathComponent(fileName).appendingPathExtension("txt")
             print("File Path: \(fileURL.path)")
             var writeString = ""
-            for i in 0...18 {
-                writeString += ("\(i)*\(list[i].artistName)*\(list[i].trackName)*\(list[i].artworkUrl100)*\(list[i].previewUrl)$")
+            for data in 0...18 {
+                writeString += ("\(data)*\(list[data].artistName)*\(list[data].trackName)*\(list[data].artworkUrl100)*\(list[data].previewUrl)$")
             }
             do {
                 //Write to file

@@ -21,14 +21,15 @@ public class PTTask {
         self.minute = minute
         self.second = second
     }
-    public func getTaskList(completion: @escaping ([PTTask]) -> ()) {
+    public func getTaskList(completion: @escaping ([PTTask]) -> Void) {
         var tasks: [PTTask] = []
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("users").child(userID!).child("Tasks").observeSingleEvent(of: .value) { (snapshot) in
             let data = snapshot.childrenCount
             for task in 1...data {
-                ref.child("users").child(userID!).child("Tasks").child("Task\(task)").observeSingleEvent(of: .value) { (snapshot) in
+                ref.child("users").child(userID!).child("Tasks").child("Task\(task)")
+                    .observeSingleEvent(of: .value) { (snapshot) in
                     let value = snapshot.value as? NSDictionary
                     let taskTitle = value?["Title"] as? String ?? ""
                     let hour = value?["Hour"] as? String ?? ""
@@ -36,14 +37,14 @@ public class PTTask {
                     let second = value?["Second"] as? String ?? ""
                     let tempTask = PTTask(title: taskTitle, hour: hour, minute: minute, second: second)
                     tasks.append(tempTask)
-                    if (task == data) {
+                    if task == data {
                         completion(tasks)
                     }
                 }
             }
         }
     }
-    public func getTaskCount(completion: @escaping (Int) -> ()) {
+    public func getTaskCount(completion: @escaping (Int) -> Void) {
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("users").child(userID!).child("Tasks").observeSingleEvent(of: .value) { (snapshot) in
@@ -51,7 +52,8 @@ public class PTTask {
             completion(Int(childCount))
         }
     }
-    public func addNewTask(taskTitle: String, hour: String, minute: String, second: String, completion: @escaping (_ val: Bool) -> ()) {
+    public func addNewTask(taskTitle: String, hour: String, minute: String,
+                           second: String, completion: @escaping (_ val: Bool) -> Void) {
         getTaskCount { (taskCount) in
             let userID = Auth.auth().currentUser?.uid
             let ref = Database.database().reference()
@@ -59,8 +61,7 @@ public class PTTask {
                                                                                                  "Hour": hour,
                                                                                                  "Minute": minute,
                                                                                                  "Second": second])
-            {
-                (error:Error?, ref:DatabaseReference) in
+            { (error:Error?, _: DatabaseReference) in
                 if let error = error {
                     print("Data could not be saved: \(error).")
                 } else {
@@ -71,5 +72,3 @@ public class PTTask {
         completion(true)
     }
 }
-
-
