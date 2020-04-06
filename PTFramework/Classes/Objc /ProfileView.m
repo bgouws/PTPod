@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *txtBio;
 @property (weak, nonatomic) IBOutlet UIButton *btnProfilePic;
 @property (weak, nonatomic) IBOutlet UIImageView *imgTest;
+@property (weak, nonatomic) IBOutlet UIButton *btnQuote;
 
 @end
 
@@ -49,6 +50,9 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.title = @"Profile";
+}
+- (IBAction)btnQuote:(id)sender {
+    [self performSegueWithIdentifier:@"ToQuoteView" sender:self];
 }
 - (IBAction)btnUpdateTapped:(id)sender {
     ProfileViewModel *profile =[[ProfileViewModel alloc] init];
