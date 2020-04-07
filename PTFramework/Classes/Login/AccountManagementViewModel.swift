@@ -32,4 +32,8 @@ public class PTAccountManagement {
             completion(success, "Success")
         }
     }
+    public func getUID() -> String {
+        let user = Auth.auth().currentUser?.uid
+        return user ?? "Nothing here"
+    }
 }
