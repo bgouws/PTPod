@@ -16,7 +16,7 @@ public struct Quote: Decodable {
     public var lastName: String
     public var quote: String
 }
-public enum ptError: Error {
+public enum PTError: Error {
     case noData
     case cannotProcessData
 }
@@ -27,7 +27,7 @@ public struct QuoteRequest {
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         self.resourceURL = resourceURL
     }
-    public func getQuotes(completion: @escaping(Result<[Quote], ptError>) -> Void) {
+    public func getQuotes(completion: @escaping(Result<[Quote], PTError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: resourceURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.noData))
@@ -45,4 +45,3 @@ public struct QuoteRequest {
         dataTask.resume()
     }
 }
-

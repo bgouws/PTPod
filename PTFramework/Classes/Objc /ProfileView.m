@@ -38,6 +38,7 @@
     _btnUpdate.layer.cornerRadius = 8.0;
     _btnUpdate.clipsToBounds = YES;
     _btnUpdate.layer.masksToBounds = NO;
+    //[_btnQuote.isHidden YES]
     //[_txtBio setDelegate: self];
     //Calling view model for data
     ProfileViewModel *profile =[[ProfileViewModel alloc] init];

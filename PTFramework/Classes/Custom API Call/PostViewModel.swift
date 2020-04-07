@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class postViewModel {
+public class PostViewModel {
     var id: String
     var trackTitle: String
     var trackArtist: String
@@ -17,6 +17,6 @@ public class postViewModel {
         self.trackArtist = trackArtist
     }
     public func setFavourite() {
-        let _ = ptPost(id: self.id, trackTitle: self.trackTitle, trackArtist: self.trackArtist)
+        _ = PTPost(id: self.id, trackTitle: self.trackTitle, trackArtist: self.trackArtist)
     }
 }

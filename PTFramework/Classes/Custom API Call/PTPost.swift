@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ptPost {
+public class PTPost {
     public init(id: String, trackTitle: String, trackArtist: String) {
         let resourceString = URL(string: "http://localhost:8080/favourites/")
         guard let requestURL = resourceString else { fatalError() }
@@ -52,7 +52,6 @@ extension CharacterSet {
     static let urlQueryValueAllowed: CharacterSet = {
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
         let subDelimitersToEncode = "!$&'()*+,;="
-
         var allowed = CharacterSet.urlQueryAllowed
         allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
         return allowed
