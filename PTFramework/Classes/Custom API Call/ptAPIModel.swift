@@ -10,22 +10,18 @@ import Foundation
 public struct AllQuotes: Decodable {
     var quotes: [Quote]
 }
-
 public struct Quote: Decodable {
     public var firstName: String
     public var id: Int
     public var lastName: String
     public var quote: String
 }
-
 public enum ptError: Error {
     case noData
     case cannotProcessData
 }
-
 public struct QuoteRequest {
     let resourceURL: URL
-    
     public init() {
         let resourceString = "http://localhost:8080/quotes"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}

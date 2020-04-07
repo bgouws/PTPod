@@ -16,7 +16,6 @@ public class postViewModel {
         self.trackTitle = trackTitle
         self.trackArtist = trackArtist
     }
-    
     public func setFavourite() {
         let _ = ptPost(id: self.id, trackTitle: self.trackTitle, trackArtist: self.trackArtist)
     }

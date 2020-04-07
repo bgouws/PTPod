@@ -11,10 +11,8 @@ public class ptPost {
     public init(id: String, trackTitle: String, trackArtist: String) {
         let resourceString = URL(string: "http://localhost:8080/favourites/")
         guard let requestURL = resourceString else { fatalError() }
-        
         var postRequest = URLRequest(url: requestURL)
         postRequest.httpMethod = "POST"
-        
         let parameters: [String: Any] = [
             "id": "\(id)",
             "trackTitle": "\(trackTitle)",
@@ -28,21 +26,17 @@ public class ptPost {
                 print("error", error ?? "Unknown error")
                 return
             }
-
             guard (200 ... 299) ~= response.statusCode else {                    // check for http errors
                 print("statusCode should be 2xx, but is \(response.statusCode)")
                 print("response = \(response)")
                 return
             }
-
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(responseString ?? "")")
         }
-
         task.resume()
     }
 }
-
 extension Dictionary {
     func percentEncoded() -> Data? {
         return map { key, value in
@@ -54,7 +48,6 @@ extension Dictionary {
         .data(using: .utf8)
     }
 }
-
 extension CharacterSet {
     static let urlQueryValueAllowed: CharacterSet = {
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
