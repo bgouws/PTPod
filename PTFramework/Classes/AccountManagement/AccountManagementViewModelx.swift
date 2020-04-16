@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class AccountManagementViewModel : AccountManagementViewModelType {
+public class AccountManagementViewModel: AccountManagementViewModelType {
     public weak var accountManagementView: AccountManagementViewType?
     public var accountManagementRepo: AccountManagementDataSourceType?
     public init() {
