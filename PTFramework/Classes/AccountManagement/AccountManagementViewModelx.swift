@@ -1,5 +1,5 @@
 //
-//  LoginViewModel.swift
+//  AccountManagementViewModel.swift
 //  PTFramework
 //
 //  Created by Brandon Gouws on 2020/04/15.
