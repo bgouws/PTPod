@@ -22,7 +22,7 @@ public class AccountManagementModel: AccountManagementDSProtocol {
     public init() {
     }
     public func login(email: String, password: String, _ completion: @escaping (String?, Bool) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
             if let error = error {
                 print(error.localizedDescription)
                 completion(error.localizedDescription, false)
@@ -32,7 +32,7 @@ public class AccountManagementModel: AccountManagementDSProtocol {
         }
     }
     public func signUp(email: String, password: String, _ completion: @escaping (String?, Bool) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { (_, error) in
             if let error = error {
                 print(error.localizedDescription)
                 completion(error.localizedDescription, false)
