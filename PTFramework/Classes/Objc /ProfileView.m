@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnProfilePic;
 @property (weak, nonatomic) IBOutlet UIImageView *imgTest;
 @property (weak, nonatomic) IBOutlet UIButton *btnQuote;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogout;
 
 @end
 
@@ -115,6 +116,8 @@
     [view addAction:library];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
+}
+- (IBAction)btnLogOutTapped:(id)sender {
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
