@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol AccountManagementViewProtocol: class {
+public protocol AccountManagementViewType: class {
     func readyForNavigation()
     func navigate()
     func displayError(error: String)

@@ -7,28 +7,28 @@
 
 import Foundation
 
-public class AccountManagementViewModel {
-    public weak var accountManagementView: AccountManagementViewProtocol?
-    public var accountManagementRepo: AccountManagementDSProtocol?
+public class AccountManagementViewModel : AccountManagementViewModelType {
+    public weak var accountManagementView: AccountManagementViewType?
+    public var accountManagementRepo: AccountManagementDataSourceType?
     public init() {
     }
     public func login(email: String, password: String) {
         accountManagementRepo?.login(email: email, password: password, { (error, signedIn) in
-            self.outcome(error: error, outcome: signedIn)
+            self.outcome(error: error, isSuccessful: signedIn)
         })
     }
     public func signUp(email: String, password: String) {
         accountManagementRepo?.signUp(email: email, password: password, { (error, accountCreated) in
-            self.outcome(error: error, outcome: accountCreated)
+            self.outcome(error: error, isSuccessful: accountCreated)
         })
     }
     public func signOut() {
         accountManagementRepo?.signOut({ (error, signOut) in
-            self.outcome(error: error, outcome: signOut)
+            self.outcome(error: error, isSuccessful: signOut)
         })
     }
-    private func outcome(error: String?, outcome: Bool) {
-        if outcome {
+    internal func outcome(error: String?, isSuccessful: Bool) {
+        if isSuccessful {
             self.accountManagementView?.readyForNavigation()
             self.accountManagementView?.navigate()
         } else {

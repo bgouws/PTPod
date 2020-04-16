@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 
-public class AccountManagementModel: AccountManagementDSProtocol {
+public class AccountManagementModel: AccountManagementDataSourceType {
     public func signOut(_ completion: @escaping (String?, Bool) -> Void) {
         do {
             try Auth.auth().signOut()
