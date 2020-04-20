@@ -39,6 +39,9 @@
     _btnUpdate.layer.cornerRadius = 8.0;
     _btnUpdate.clipsToBounds = YES;
     _btnUpdate.layer.masksToBounds = NO;
+    _btnLogout.layer.cornerRadius = 8.0;
+    _btnLogout.clipsToBounds = YES;
+    _btnLogout.layer.masksToBounds = NO;
     //[_btnQuote.isHidden YES]
     //[_txtBio setDelegate: self];
     //Calling view model for data
