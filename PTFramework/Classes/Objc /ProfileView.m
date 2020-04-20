@@ -42,8 +42,6 @@
     _btnLogout.layer.cornerRadius = 8.0;
     _btnLogout.clipsToBounds = YES;
     _btnLogout.layer.masksToBounds = NO;
-    //[_btnQuote.isHidden YES]
-    //[_txtBio setDelegate: self];
     //Calling view model for data
     ProfileViewModel *profile =[[ProfileViewModel alloc] init];
     [profile setdata:^(NSString * _Nonnull firstName, NSString * _Nonnull lastName, NSString * _Nonnull bio, UIImage * _Nonnull image) {
