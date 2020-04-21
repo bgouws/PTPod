@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol MusicListViewType: class {
-    func loadCurrentTrack(listOfTracks: TrackDetails)
-    func loadNextTrack(listOfTracks: TrackDetails)
+    func loadCurrentTrack(currentTrack: TrackDetails)
+    func loadNextTrack(nextTrack: TrackDetails)
     func displayError(error: String)
 }

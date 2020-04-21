@@ -33,8 +33,8 @@ public class MusicListViewModel: MusicListViewModelType {
             case .success(let listOfTracks) : self.list = listOfTracks
             }
             if isSuccessful {
-                self.view?.loadCurrentTrack(listOfTracks: self.list[index])
-                self.view?.loadNextTrack(listOfTracks: self.list[index + 1])
+                self.view?.loadCurrentTrack(currentTrack: self.list[index])
+                self.view?.loadNextTrack(nextTrack: self.list[index + 1])
             } else {
                 self.view?.displayError(error: "An error has occured")
             }
