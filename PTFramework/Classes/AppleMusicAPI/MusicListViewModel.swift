@@ -21,7 +21,7 @@ public class MusicListViewModel: MusicListViewModelType {
         count = 0
         repo?.getListOfTracks { result, _ in
             switch result {
-            case .failure(let error) : print(error)
+            case .failure(let error) : self.view?.displayError(error: error.localizedDescription)
             case .success(let listOfTracks) : self.list = listOfTracks
             }
         }
