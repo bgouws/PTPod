@@ -13,12 +13,9 @@ public class MusicListViewModel: MusicListViewModelType {
     public var listError: String = ""
     public weak var view: MusicListViewType?
     public var repo: MusicListDataSourceType?
-    public var count: Int
     public var isTimerRunning = false
-    private var counter: Float = 0
 
     required public init() {
-        count = 0
         repo?.getListOfTracks { result, _ in
             switch result {
             case .failure(let error) : self.view?.displayError(error: error.localizedDescription)
