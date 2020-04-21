@@ -16,24 +16,16 @@ public class MusicListViewModel: MusicListViewModelType {
     public var isTimerRunning = false
 
     required public init() {
-        repo?.getListOfTracks { result, _ in
-            switch result {
-            case .failure(let error) : self.view?.displayError(error: error.localizedDescription)
-            case .success(let listOfTracks) : self.list = listOfTracks
-            }
-        }
     }
     public func getListOfTracks(index: Int, indexUpNext: Int) {
-        repo?.getListOfTracks { result, isSuccessful in
+        repo?.getListOfTracks { result in
             switch result {
-            case .failure(let error) : print(error)
-            case .success(let listOfTracks) : self.list = listOfTracks
-            }
-            if isSuccessful {
+            case .failure(let error) :
+                self.view?.displayError(error: error.localizedDescription)
+            case .success(let listOfTracks) :
+                self.list = listOfTracks
                 self.view?.loadCurrentTrack(currentTrack: self.list[index])
                 self.view?.loadNextTrack(nextTrack: self.list[index + 1])
-            } else {
-                self.view?.displayError(error: "An error has occured")
             }
         }
     }
