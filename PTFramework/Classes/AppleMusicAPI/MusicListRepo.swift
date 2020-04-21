@@ -17,7 +17,6 @@ public class MusicListRepo: MusicListDataSourceType {
         guard let resourceURL = URL(string: apiQuery) else {fatalError()}
         self.resourceURL = resourceURL
     }
-    
     public func getListOfTracks(completion: @escaping(Result<[TrackDetails], TracksError>, Bool) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: resourceURL) { data, _, _ in
             guard let jsonData = data else {

@@ -15,11 +15,11 @@ public class MusicListViewModel: MusicListViewModelType {
     public var repo: MusicListDataSourceType?
     public var count: Int
     public var isTimerRunning = false
-    private var counter:Float = 0
+    private var counter: Float = 0
 
     required public init() {
         count = 0
-        repo?.getListOfTracks { result, isSuccessful in
+        repo?.getListOfTracks { result, _ in
             switch result {
             case .failure(let error) : print(error)
             case .success(let listOfTracks) : self.list = listOfTracks
