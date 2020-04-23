@@ -14,7 +14,7 @@ public class TaskListRepo: TaskListRepoType {
     public init() { }
     public func getTaskList(completion: @escaping(Result<[Task], Error>) -> Void) {
         var tasks: [Task] = []
-        let cycleCompleteWorkItem = DispatchWorkItem{ completion(.success(tasks)) }
+        let cycleCompleteWorkItem = DispatchWorkItem { completion(.success(tasks)) }
         let ref = Database.database().reference()
         guard let userID = Auth.auth().currentUser?.uid else {
             return
