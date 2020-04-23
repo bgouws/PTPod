@@ -12,10 +12,9 @@ public class TaskListViewModel: TaskListViewModelType {
     public weak var view: TaskListViewType?
     public var repo: TaskListRepoType?
     required public init() { }
-    
     public func getListOfTasks() {
         self.repo?.getTaskList(completion: { (result) in
-            switch (result) {
+            switch result {
             case .success(let listOfTasks):
                 self.list = listOfTasks
                 self.view?.loadData(listOfTasks: self.list)
