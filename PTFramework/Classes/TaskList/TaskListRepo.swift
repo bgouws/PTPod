@@ -14,11 +14,13 @@ public class TaskListRepo: TaskListRepoType {
     public func getTaskList(completion: @escaping(Result<[Task], Error>) -> Void) {
         var tasks: [Task] = []
         let ref = Database.database().reference()
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("users").child(userID!).child("Tasks").observeSingleEvent(of: .value, with: { (snapshot) in
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return 
+        }
+        ref.child("users").child(userID).child("Tasks").observeSingleEvent(of: .value, with: { (snapshot) in
             let data = snapshot.childrenCount
             for task in 1...data {
-                ref.child("users").child(userID!).child("Tasks").child("Task\(task)")
+                ref.child("users").child(userID).child("Tasks").child("Task\(task)")
                     .observeSingleEvent(of: .value) { (snapshot) in
                     let value = snapshot.value as? NSDictionary
                     let taskTitle = value?["Title"] as? String ?? ""

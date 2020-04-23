@@ -7,9 +7,6 @@
 
 import Foundation
 
-public struct Tasks {
-    var listOfTasks: [Task]
-}
 public struct Task {
     public var taskTitle: String
     public var taskHour: String
