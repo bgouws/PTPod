@@ -10,16 +10,19 @@ import FirebaseDatabase
 import FirebaseAuth
 
 public class TaskListRepo: TaskListRepoType {
+    let dispatchGroup = DispatchGroup()
     public init() { }
     public func getTaskList(completion: @escaping(Result<[Task], Error>) -> Void) {
         var tasks: [Task] = []
+        let cycleCompleteWorkItem = DispatchWorkItem{ completion(.success(tasks)) }
         let ref = Database.database().reference()
         guard let userID = Auth.auth().currentUser?.uid else {
-            return 
+            return
         }
         ref.child("users").child(userID).child("Tasks").observeSingleEvent(of: .value, with: { (snapshot) in
             let data = snapshot.childrenCount
             for task in 1...data {
+                self.dispatchGroup.enter()
                 ref.child("users").child(userID).child("Tasks").child("Task\(task)")
                     .observeSingleEvent(of: .value) { (snapshot) in
                     let value = snapshot.value as? NSDictionary
@@ -30,11 +33,10 @@ public class TaskListRepo: TaskListRepoType {
                         let tempTask = Task(taskTitle: taskTitle, taskHour: hour,
                                             taskMinute: minute, taskSecond: second)
                     tasks.append(tempTask)
-                    if task == data {
-                        completion(.success(tasks))
-                    }
+                    self.dispatchGroup.leave()
                 }
             }
+            self.dispatchGroup.notify(queue: DispatchQueue.main, work: cycleCompleteWorkItem )
         }) {(error) in
             completion(.failure(error))
         }
