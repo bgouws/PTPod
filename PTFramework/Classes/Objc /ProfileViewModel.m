@@ -32,16 +32,4 @@
     [profile setProfileImage:userID :img :^(NSString * _Nonnull output) {
     }];
 }
-- (NSString *) getFirstName
-{
-    return self.firstName;
-}
-- (NSString *) getLastName
-{
-    return self.lastName;
-}
-- (NSString *) getBio
-{
-    return self.bio;
-}
 @end
