@@ -11,9 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileViewModel : NSObject
-- (NSString *) getFirstName;
-- (NSString *) getLastName;
-- (NSString *) getBio;
 - (void) setdata:(void (^)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull, UIImage * _Nonnull))completion;
 - (void) updateData:(NSString *)firstName :(NSString *)lastName :(NSString *)bio :(UIImage*)img;
 @property (strong, nonatomic) NSString *firstName;
