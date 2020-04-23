@@ -9,5 +9,5 @@ import Foundation
 
 public protocol TaskManipulationRepoType {
     func addNewTask(taskTitle: String, hour: String, minute: String,
-    second: String, completion: @escaping (Result<Bool, Error>) -> Void)
+                    second: String, completion: @escaping (Result<Bool, Error>) -> Void)
 }

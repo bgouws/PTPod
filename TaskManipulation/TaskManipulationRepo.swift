@@ -17,7 +17,7 @@ public class TaskManipulationRepo: TaskManipulationRepoType {
             let childCount = snapshot.childrenCount
             ref.child("users").child(userID!).child("Tasks")
                 .child("Task\(Int(childCount+1))").setValue(["Title": taskTitle,
-                                                             "Hour" : hour,
+                                                             "Hour": hour,
                                                              "Minute": minute,
                                                             "Second": second])
             completion(.success(true))
