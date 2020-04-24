@@ -41,7 +41,6 @@ public class MusicTasteRepo: MusicTasteRepoType {
                 completion(.failure(error))
                 return
             }
-                                                                                    
         }
         completion(.success(true))
     }
