@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import FirebaseDatabase
+import FirebaseAuth
 
 public class TaskManipulationRepo: TaskManipulationRepoType {
     required public init() { }
