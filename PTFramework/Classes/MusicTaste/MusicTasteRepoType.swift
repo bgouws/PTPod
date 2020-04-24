@@ -9,5 +9,5 @@ import Foundation
 
 public protocol MusicTasteRepoType {
     init()
-    func StoreTaste(taste: [String], completion: @escaping(Result<Bool, Error>) -> Void)
+    func storeTaste(taste: [String], completion: @escaping(Result<Bool, Error>) -> Void)
 }

@@ -11,7 +11,7 @@ import FirebaseAuth
 
 public class MusicTasteRepo: MusicTasteRepoType {
     public required init() { }
-    public func StoreTaste(taste: [String], completion: @escaping(Result<Bool, Error>) -> Void) {
+    public func storeTaste(taste: [String], completion: @escaping(Result<Bool, Error>) -> Void) {
         let ref = Database.database().reference()
         guard let userID = Auth.auth().currentUser?.uid else {
             return
@@ -36,7 +36,7 @@ public class MusicTasteRepo: MusicTasteRepoType {
                                                                                  "Minute": "01",
                                                                                  "Second": "30",
                                                                                  "Title": "Sample"]) {
-            (error: Error?, ref:DatabaseReference) in
+            (error: Error?, _: DatabaseReference) in
             if let error = error {
                 completion(.failure(error))
                 return

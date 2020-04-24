@@ -12,8 +12,8 @@ public class MusicTasteViewModel: MusicTasteViewModelType {
     public var repo: MusicTasteRepoType?
     required public init() { }
     public func storeTaste(tasteList: [String]) {
-        repo?.StoreTaste(taste: tasteList, completion: { (result) in
-            switch (result) {
+        repo?.storeTaste(taste: tasteList, completion: { (result) in
+            switch result {
             case .success(let didSaveData):
                 self.view?.musicTasteSaved(didSaveData: didSaveData)
             case .failure(let error):
