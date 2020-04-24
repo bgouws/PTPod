@@ -16,8 +16,8 @@ public class MusicTasteRepo: MusicTasteRepoType {
         guard let userID = Auth.auth().currentUser?.uid else {
             return
         }
-        ref.child("users").child(userID).child("MusicTaste").setValue(["MusicTaste": taste]) {
-            (error: Error?, ref:DatabaseReference) in
+        ref.child("users").child(userID).child("MusicTaste").setValue(["MusicTaste": taste])
+        { (error: Error?, ref: DatabaseReference) in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -25,8 +25,8 @@ public class MusicTasteRepo: MusicTasteRepoType {
         }
         ref.child("users").child(userID).child("Details").setValue(["bio": "Tell us something about yourself!",
                                                                     "firstName": "Put your name here!",
-                                                                    "lastName": "Put your last name here!"]) {
-            (error: Error?, ref:DatabaseReference) in
+                                                                    "lastName": "Put your last name here!"])
+        { (error: Error?, ref: DatabaseReference) in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -35,8 +35,8 @@ public class MusicTasteRepo: MusicTasteRepoType {
         ref.child("users").child(userID).child("Tasks").child("Task1").setValue(["Hour": "00",
                                                                                  "Minute": "01",
                                                                                  "Second": "30",
-                                                                                 "Title": "Sample"]) {
-            (error: Error?, _: DatabaseReference) in
+                                                                                 "Title": "Sample"])
+        { (error: Error?, _: DatabaseReference) in
             if let error = error {
                 completion(.failure(error))
                 return
