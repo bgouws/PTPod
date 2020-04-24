@@ -17,7 +17,7 @@ public class MusicTasteRepo: MusicTasteRepoType {
             return
         }
         ref.child("users").child(userID).child("MusicTaste").setValue(["MusicTaste": taste])
-        { (error: Error?, ref: DatabaseReference) in
+        { (error: Error?, _: DatabaseReference) in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -26,7 +26,7 @@ public class MusicTasteRepo: MusicTasteRepoType {
         ref.child("users").child(userID).child("Details").setValue(["bio": "Tell us something about yourself!",
                                                                     "firstName": "Put your name here!",
                                                                     "lastName": "Put your last name here!"])
-        { (error: Error?, ref: DatabaseReference) in
+        { (error: Error?, _: DatabaseReference) in
             if let error = error {
                 completion(.failure(error))
                 return
