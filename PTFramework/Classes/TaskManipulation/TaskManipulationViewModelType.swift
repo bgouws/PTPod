@@ -11,5 +11,5 @@ public protocol TaskManipulationViewModelType {
     var view: AddTaskViewType? { get set }
     var repo: TaskManipulationRepoType? { get set }
     init()
-    func addNewItem(taskTitle: String, hour: String, minute: String, second: String)
+    func addNewItem(newTask: Task)
 }

@@ -35,7 +35,8 @@ public class MusicTasteRepo: MusicTasteRepoType {
         ref.child("users").child(userID).child("Tasks").child("Task1").setValue(["Hour": "00",
                                                                                  "Minute": "01",
                                                                                  "Second": "30",
-                                                                                 "Title": "Sample"])
+                                                                                 "Title": "Sample",
+                                                                                 "Location": "Location: Sample"])
         { (error: Error?, _: DatabaseReference) in
             if let error = error {
                 completion(.failure(error))

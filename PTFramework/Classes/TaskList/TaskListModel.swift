@@ -12,4 +12,12 @@ public struct Task {
     public var taskHour: String
     public var taskMinute: String
     public var taskSecond: String
+    public var location: String
+    public init(taskTitle: String, taskHour: String, taskMinute: String, taskSecond: String, location: String) {
+        self.taskTitle = taskTitle
+        self.taskHour = taskHour
+        self.taskMinute = taskMinute
+        self.taskSecond = taskSecond
+        self.location = location
+    }
 }

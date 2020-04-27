@@ -30,8 +30,9 @@ public class TaskListRepo: TaskListRepoType {
                     let hour = value?["Hour"] as? String ?? ""
                     let minute = value?["Minute"] as? String ?? ""
                     let second = value?["Second"] as? String ?? ""
-                        let tempTask = Task(taskTitle: taskTitle, taskHour: hour,
-                                            taskMinute: minute, taskSecond: second)
+                    let location = value?["Location"] as? String ?? ""
+                    let tempTask = Task(taskTitle: taskTitle, taskHour: hour,
+                                        taskMinute: minute, taskSecond: second, location: location)
                     tasks.append(tempTask)
                     self.dispatchGroup.leave()
                 }
