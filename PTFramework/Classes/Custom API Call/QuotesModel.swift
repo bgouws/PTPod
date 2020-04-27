@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct listOfQuotes: Decodable {
+public struct ListOfQuotes: Decodable {
     var allQuotes: [Quotes]
 }
 public struct Quotes: Decodable {

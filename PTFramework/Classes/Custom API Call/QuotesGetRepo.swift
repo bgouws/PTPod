@@ -22,7 +22,7 @@ public class QuotesGetRepo: QuotesGetRepoType {
             }
             do {
                 let decoder = JSONDecoder()
-                let quotesResponse = try decoder.decode(listOfQuotes.self, from: jsonData)
+                let quotesResponse = try decoder.decode(ListOfQuotes.self, from: jsonData)
                 let actualData = quotesResponse.allQuotes
                 completion(.success(actualData))
             } catch {
