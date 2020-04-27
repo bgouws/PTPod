@@ -11,7 +11,6 @@ public class QuotesGetViewModel: QuotesGetViewModelType {
     public var list: [Quotes] = []
     public weak var view: QuotesGetViewType?
     public var repo: QuotesGetRepoType?
-    
     required public init() { }
     public func getAllQuotes() {
         repo?.getListOfQuotes(completion: { result in

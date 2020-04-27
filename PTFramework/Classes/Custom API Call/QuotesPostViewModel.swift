@@ -10,7 +10,6 @@ import Foundation
 public class QuotesPostViewModel {
     public weak var view: QuotesPostViewType?
     public var repo: QuotesPostRepoType?
-    
     required public init() { }
     public func postNewQuote() {
         repo?.addQuote(completion: { result in
