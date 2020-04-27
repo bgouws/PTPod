@@ -11,8 +11,7 @@ import FirebaseAuth
 
 public class TaskManipulationRepo: TaskManipulationRepoType {
     required public init() { }
-    public func addNewTask(taskTitle: String, hour: String, minute: String,
-                           second: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+    public func addNewTask(newTask: Task, completion: @escaping (Result<Bool, Error>) -> Void) {
         let ref = Database.database().reference()
         guard let userID = Auth.auth().currentUser?.uid else {
             return
@@ -20,10 +19,11 @@ public class TaskManipulationRepo: TaskManipulationRepoType {
         ref.child("users").child(userID).child("Tasks").observeSingleEvent(of: .value, with: { (snapshot) in
             let childCount = snapshot.childrenCount
             ref.child("users").child(userID).child("Tasks")
-                .child("Task\(Int(childCount+1))").setValue(["Title": taskTitle,
-                                                             "Hour": hour,
-                                                             "Minute": minute,
-                                                            "Second": second])
+                .child("Task\(Int(childCount+1))").setValue(["Title": newTask.taskTitle,
+                                                             "Hour": newTask.taskHour,
+                                                             "Minute": newTask.taskMinute,
+                                                             "Second": newTask.taskSecond,
+                                                             "Location": newTask.location])
             completion(.success(true))
         }) { (error) in
             completion(.failure(error))
