@@ -1,38 +1,36 @@
 //
-//  ptPost.swift
+//  QuotesPostRepo.swift
 //  PTFramework
 //
-//  Created by Brandon Gouws on 2020/04/06.
+//  Created by Brandon Gouws on 2020/04/27.
 //
 
 import Foundation
 
-public class PTPost {
-    public init(id: String, trackTitle: String, trackArtist: String) {
-        let resourceString = URL(string: "http://localhost:8080/favourites/")
-        guard let requestURL = resourceString else { fatalError() }
+public class QuotesPostRepo: QuotesPostRepoType {
+    var postRequest: URLRequest
+    required public init?(id: String, firstName: String, lastName: String, quote: String) {
+        let link = "https://playtimeapi.herokuapp.com/saveQuote"
+        guard let requestURL = URL(string: link) else { return nil }
         var postRequest = URLRequest(url: requestURL)
         postRequest.httpMethod = "POST"
         let parameters: [String: Any] = [
             "id": "\(id)",
-            "trackTitle": "\(trackTitle)",
-            "trackArtist": "\(trackArtist)"
+            "firstName": "\(firstName)",
+            "lastName": "\(lastName)",
+            "quote": "\(quote)"
         ]
         postRequest.httpBody = parameters.percentEncoded()
+        self.postRequest = postRequest
+    }
+    public func addQuote(completion: @escaping(Result<Bool, Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: postRequest) { data, response, error in
-            guard let data = data,
-                let response = response as? HTTPURLResponse,
-                error == nil else {
-                print("error", error ?? "Unknown error")
-                return
-            }
-            guard (200 ... 299) ~= response.statusCode else {                    // check for http errors
-                print("statusCode should be 2xx, but is \(response.statusCode)")
-                print("response = \(response)")
-                return
-            }
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString ?? "")")
+            guard let _ = data,
+            error == nil else {
+                completion(.failure(error!))
+            return
+        }
+            completion(.success(true))
         }
         task.resume()
     }
@@ -50,7 +48,7 @@ extension Dictionary {
 }
 extension CharacterSet {
     static let urlQueryValueAllowed: CharacterSet = {
-        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+        let generalDelimitersToEncode = ":#[]@"
         let subDelimitersToEncode = "!$&'()*+,;="
         var allowed = CharacterSet.urlQueryAllowed
         allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
