@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgTest;
 @property (weak, nonatomic) IBOutlet UIButton *btnQuote;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogout;
+@property (weak, nonatomic) IBOutlet UIButton *btnSettings;
 
 @end
 
@@ -119,6 +120,9 @@
     [self presentViewController:view animated:YES completion:nil];
 }
 - (IBAction)btnLogOutTapped:(id)sender {
+}
+- (IBAction)btnSettingsTapped:(id)sender {
+    [self performSegueWithIdentifier:@"ToProfileOptions" sender:self];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
