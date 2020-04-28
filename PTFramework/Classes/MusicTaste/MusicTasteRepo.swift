@@ -54,7 +54,8 @@ public class MusicTasteRepo: MusicTasteRepoType {
         guard let userID = Auth.auth().currentUser?.uid else {
             return
         }
-        ref.child("users").child(userID).child("MusicTaste").child("MusicTaste").observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("users").child(userID).child("MusicTaste").child("MusicTaste").observeSingleEvent(of: .value,
+                                                                                                    with: { (snapshot) in
             let data = snapshot.childrenCount
             let value = snapshot.value as? NSDictionary
             var genreList: [String] = []
