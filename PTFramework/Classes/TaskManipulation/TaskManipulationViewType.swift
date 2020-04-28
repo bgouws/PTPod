@@ -7,7 +7,8 @@
 
 import Foundation
 
-public protocol AddTaskViewType: class {
+public protocol TaskManipulationViewType: class {
     func taskAdded(didWriteData: Bool)
-    func displayError(error: Error)
+    func displayManipulationError(error: Error)
+    func taskRemoved(isSuccessful: Bool)
 }

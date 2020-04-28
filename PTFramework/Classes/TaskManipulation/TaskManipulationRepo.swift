@@ -10,6 +10,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 public class TaskManipulationRepo: TaskManipulationRepoType {
+    let dispatchGroup = DispatchGroup()
     required public init() { }
     public func addNewTask(newTask: Task, completion: @escaping (Result<Bool, Error>) -> Void) {
         let ref = Database.database().reference()
@@ -28,5 +29,27 @@ public class TaskManipulationRepo: TaskManipulationRepoType {
         }) { (error) in
             completion(.failure(error))
         }
+    }
+    public func removeTask(newList: [Task], completion: @escaping (Result<Bool, Error>) -> Void) {
+        let ref = Database.database().reference()
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        let total = newList.count
+        ref.child("users").child(userID).child("Tasks").removeValue()
+        for task in 0..<total {
+            ref.child("users").child(userID).child("Tasks").child("Task\(task+1)").setValue(["Title": newList[task].taskTitle,
+                                                                                             "Hour": newList[task].taskHour,
+                                                                                             "Minute": newList[task].taskMinute,
+                                                                                             "Second": newList[task].taskSecond,
+                                                                                             "Location": newList[task].location])
+            { (error: Error?, _: DatabaseReference) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+            }
+        }
+        
     }
 }

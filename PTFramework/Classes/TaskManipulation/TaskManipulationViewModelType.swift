@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol TaskManipulationViewModelType {
-    var view: AddTaskViewType? { get set }
+    var view: TaskManipulationViewType? { get set }
     var repo: TaskManipulationRepoType? { get set }
     init()
     func addNewItem(newTask: Task)
