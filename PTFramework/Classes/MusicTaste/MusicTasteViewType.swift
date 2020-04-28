@@ -9,5 +9,6 @@ import Foundation
 
 public protocol MusicTasteViewType: class {
     func musicTasteSaved(didSaveData: Bool)
+    func dataReady(genre: String)
     func displayError(error: Error)
 }

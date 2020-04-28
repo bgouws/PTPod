@@ -9,4 +9,5 @@ import Foundation
 
 public protocol TaskManipulationRepoType {
     func addNewTask(newTask: Task, completion: @escaping (Result<Bool, Error>) -> Void)
+    func removeTask(newList: [Task], completion: @escaping (Result<Bool, Error>) -> Void)
 }

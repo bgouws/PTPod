@@ -21,4 +21,14 @@ public class MusicTasteViewModel: MusicTasteViewModelType {
             }
         })
     }
+    public func getMusicTaste() {
+        repo?.getTaste(completion: { result in
+            switch result {
+            case .success(let musicTasteList):
+                self.view?.dataReady(genre: musicTasteList[Int.random(in: 0 ..< musicTasteList.count)])
+            case .failure(let error):
+                self.view?.displayError(error: error)
+            }
+        })
+    }
 }

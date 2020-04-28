@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol MusicListDataSourceType: class {
-    init?()
+    init?(genre: String)
     func getListOfTracks(completion: @escaping(Result<[TrackDetails], TracksError>) -> Void)
 }
 

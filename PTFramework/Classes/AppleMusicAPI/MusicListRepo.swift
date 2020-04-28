@@ -9,9 +9,7 @@ import Foundation
 
 public class MusicListRepo: MusicListDataSourceType {
     let resourceURL: URL
-    required public init?() {
-        //Hard coded for now - need to refactor other code
-        let genre = "Rock"
+    required public init?(genre: String) {
         let link = "https://itunes.apple.com/search/media=music&entity=song&term="
         let apiQuery = "\(link)\(genre)"
         guard let resourceURL = URL(string: apiQuery) else { return nil }
