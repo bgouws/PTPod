@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 public class MusicTasteRepo: MusicTasteRepoType {
     public required init() { }
@@ -47,6 +48,12 @@ public class MusicTasteRepo: MusicTasteRepoType {
                 return
             }
         }
+        guard let image = UIImage(named: "DefaultUser"), let data = image.jpegData(compressionQuality: 1.0) else {
+            print("Error")
+            return
+        }
+        let imageRef = Storage.storage().reference().child("\(userID)")
+        imageRef.putData(data)
         completion(.success(true))
     }
     public func getTaste(completion: @escaping(Result<[String], Error>) -> Void) {
