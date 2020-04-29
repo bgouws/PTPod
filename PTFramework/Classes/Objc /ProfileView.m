@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnProfilePic;
 @property (weak, nonatomic) IBOutlet UIImageView *imgTest;
 @property (weak, nonatomic) IBOutlet UIButton *btnQuote;
-@property (weak, nonatomic) IBOutlet UIButton *btnLogout;
 @property (weak, nonatomic) IBOutlet UIButton *btnSettings;
 
 @end
@@ -40,9 +39,6 @@
     _btnUpdate.layer.cornerRadius = 8.0;
     _btnUpdate.clipsToBounds = YES;
     _btnUpdate.layer.masksToBounds = NO;
-    _btnLogout.layer.cornerRadius = 8.0;
-    _btnLogout.clipsToBounds = YES;
-    _btnLogout.layer.masksToBounds = NO;
     //Calling view model for data
     ProfileViewModel *profile =[[ProfileViewModel alloc] init];
     [profile setdata:^(NSString * _Nonnull firstName, NSString * _Nonnull lastName, NSString * _Nonnull bio, UIImage * _Nonnull image) {
@@ -118,8 +114,6 @@
     [view addAction:library];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
-}
-- (IBAction)btnLogOutTapped:(id)sender {
 }
 - (IBAction)btnSettingsTapped:(id)sender {
     [self performSegueWithIdentifier:@"ToProfileOptions" sender:self];
